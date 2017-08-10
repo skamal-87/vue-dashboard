@@ -10,3 +10,7 @@ yarn-error.log
 *.ntvs*
 *.njsproj
 *.sln
+
+# Sublime files
+dashboard.sublime-project
+dashboard.sublime-workspace
