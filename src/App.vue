@@ -49,6 +49,11 @@
     text-align: center;
   }
 
+  .row {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
   .card {
     cursor: pointer;
     box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.25);
@@ -62,5 +67,18 @@
     border-radius: 4px;
     box-shadow: 0 0 5px 0 #fd6721;
     transition: .5s;
+  }
+
+  .dataTables_length, .dataTables_info {
+    text-align: left;
+  }
+
+  .widget-title {
+    font-size: 3rem;
+  }
+
+  hr {
+    margin-top: 5px;
+    margin-bottom: 10px;
   }
 </style>

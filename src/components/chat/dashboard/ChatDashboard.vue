@@ -1,29 +1,24 @@
 <template>
   <section>
     <TopBarMetrics class="tob-bar-metrics"></TopBarMetrics>
-    <div class="row">
-
-    </div>
+    <QueueHealth></QueueHealth>
   </section>
 </template>
 
 <script>
   import TopBarMetrics from './TopBarMetrics.vue';
+  import QueueHealth from '../other/QueueHealth.vue';
 
   export default {
     name: 'ChatDashboard',
     components: {
-      TopBarMetrics
+      TopBarMetrics,
+      QueueHealth
     }
   }
 </script>
 
 <style scoped>
-  .row {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-
   .tob-bar-metrics {
     padding-top: 1em;
   }
