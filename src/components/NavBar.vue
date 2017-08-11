@@ -1,26 +1,15 @@
 <template>
   <div class="nav-bar">
     <ul>
-      <li class="card">
-        <a href="#" @click="showNavMenuItems">
-          <i class="glyphicon glyphicon-menu-hamburger"></i>
-          Menu
+      <li v-for="nav in navOptions" class="card" :class="{ 'sub-nav hidden-nav': nav.subMenu }">
+        <a @click="showNavMenuItems" v-if="nav.subMenuParent">
+          <i class="glyphicon glyphicon-cog" :class="nav.icon"></i>
+          {{ nav.title }}
         </a>
-      </li>
-      <li class="card" :class="{ 'show-nav': hideOtherDashboards }">
-        <router-link to="/queueHealthDashboard">
-          <i class="glyphicon glyphicon-list-alt"></i>
-          Queue Health
-        </router-link>
-      </li>
-
-      <li v-for="nav in navOptions" class="card">
-        <a href="#" @click="showNavMenuItems" v-if="nav.subMenuParent">
-        <router-link :to="nav.url">
+        <router-link :to="nav.url" v-if="!nav.subMenuParent">
           <i class="glyphicon glyphicon-cog" :class="nav.icon"></i>
           {{ nav.title }}
         </router-link>
-        </a v-if="nav.subMenuParent">
       </li>
     </ul>
   </div>
@@ -31,7 +20,6 @@
     name: 'NavBar',
     data: () => {
       return {
-        hideOtherDashboards: true,
         navOptions: [
           {
             title: 'Dashboard',
@@ -45,6 +33,20 @@
             url: '/',
             icon: 'glyphicon-phone',
             subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Menu',
+            url: '#',
+            icon: 'glyphicon-menu-hamburger',
+            subMenu: false,
+            subMenuParent: true
+          },
+          {
+            title: 'Queue Health',
+            url: '/queueHealthDashboard',
+            icon: 'glyphicon-list-alt',
+            subMenu: true,
             subMenuParent: false
           },
           {
@@ -73,7 +75,7 @@
     },
     methods: {
       showNavMenuItems() {
-        this.hideOtherDashboards = !this.hideOtherDashboards;
+        $('.sub-nav').toggleClass('hidden-nav');
       }
     }
   }
@@ -114,7 +116,7 @@
     padding-top: 10px;
   }
 
-  .show-nav {
+  .hidden-nav {
     display: none;
   }
 </style>
