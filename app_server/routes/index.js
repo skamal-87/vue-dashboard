@@ -8,5 +8,6 @@ const router = express.Router();
 const main = require('../controllers/main.js');
  
 router.get('/api/v1/test', main.test);
+router.get('/api/v1/getQueueHealth', main.getQueueHealth);
  
 module.exports = router;
