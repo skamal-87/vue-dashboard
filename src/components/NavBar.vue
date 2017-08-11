@@ -2,18 +2,6 @@
   <div class="nav-bar">
     <ul>
       <li class="card">
-        <router-link to="/">
-          <i class="glyphicon glyphicon-comment"></i>
-          Dashboard
-        </router-link>
-      </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-phone"></i>
-          Dashboard
-        </a>
-      </li>
-      <li class="card">
         <a href="#" @click="showNavMenuItems">
           <i class="glyphicon glyphicon-menu-hamburger"></i>
           Menu
@@ -25,23 +13,14 @@
           Queue Health
         </router-link>
       </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-book"></i>
-          Glossary
-        </a>
-      </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-cog"></i>
-          Settings
-        </a>
-      </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-question-sign"></i>
-          Help
-        </a>
+
+      <li v-for="nav in navOptions" class="card">
+        <a href="#" @click="showNavMenuItems" v-if="nav.subMenuParent">
+        <router-link :to="nav.url">
+          <i class="glyphicon glyphicon-cog" :class="nav.icon"></i>
+          {{ nav.title }}
+        </router-link>
+        </a v-if="nav.subMenuParent">
       </li>
     </ul>
   </div>
@@ -52,7 +31,44 @@
     name: 'NavBar',
     data: () => {
       return {
-        hideOtherDashboards: true
+        hideOtherDashboards: true,
+        navOptions: [
+          {
+            title: 'Dashboard',
+            url: '/',
+            icon: 'glyphicon-comment',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Dashboard',
+            url: '/',
+            icon: 'glyphicon-phone',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Glossary',
+            url: '/',
+            icon: 'glyphicon-book',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Settings',
+            url: '/',
+            icon: 'glyphicon-cog',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Help',
+            url: '/',
+            icon: 'glyphicon-question-sign',
+            subMenu: false,
+            subMenuParent: false
+          }
+        ]
       }
     },
     methods: {
