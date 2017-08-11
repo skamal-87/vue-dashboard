@@ -6,7 +6,7 @@
         <div class="card-non-interactive">
           <div class="card-content">
             <p class="card-title">Total Chat <br>Requests</p>
-            <p class="card-metric">{{dataInt}}</p>
+            <p class="card-metric">{{dataInt[0].agentsMetrics.metricsTotals.totalResolvedConversations}}</p>
           </div>
         </div>
       </div>
@@ -111,8 +111,8 @@
     name: 'TopBarMetrics',
     computed: {
       dataInt() {
-        return 2;
-        //return this.$store.getters.dataInt;
+        // return 2;
+        return this.$store.getters.dataInt;
       }
     }
   }
