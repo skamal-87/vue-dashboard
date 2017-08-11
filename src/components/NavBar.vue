@@ -28,13 +28,19 @@
       <li class="card">
         <a href="#">
           <i class="glyphicon glyphicon-book"></i>
-          Dashboard
+          Glossary
         </a>
       </li>
       <li class="card">
         <a href="#">
           <i class="glyphicon glyphicon-cog"></i>
-          Dashboard
+          Settings
+        </a>
+      </li>
+      <li class="card">
+        <a href="#">
+          <i class="glyphicon glyphicon-question-sign"></i>
+          Help
         </a>
       </li>
     </ul>
