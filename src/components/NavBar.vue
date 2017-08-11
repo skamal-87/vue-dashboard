@@ -14,15 +14,15 @@
         </a>
       </li>
       <li class="card">
-        <a href="#">
+        <a href="#" @click="showNavMenuItems">
           <i class="glyphicon glyphicon-menu-hamburger"></i>
-          Dashboard
+          Menu
         </a>
       </li>
-      <li class="card">
+      <li class="card" :class="{ 'show-nav': hideOtherDashboards }">
         <router-link to="/queueHealthDashboard">
           <i class="glyphicon glyphicon-list-alt"></i>
-          Dashboard
+          Queue Health
         </router-link>
       </li>
       <li class="card">
@@ -43,7 +43,17 @@
 
 <script>
   export default {
-    name: 'NavBar'
+    name: 'NavBar',
+    data: () => {
+      return {
+        hideOtherDashboards: true
+      }
+    },
+    methods: {
+      showNavMenuItems() {
+        this.hideOtherDashboards = !this.hideOtherDashboards;
+      }
+    }
   }
 </script>
 
@@ -80,5 +90,9 @@
     color: #00d1b2;
     font-size: 25px;
     padding-top: 10px;
+  }
+
+  .show-nav {
+    display: none;
   }
 </style>
