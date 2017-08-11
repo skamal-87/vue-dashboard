@@ -27,12 +27,8 @@ const getters = {
 };
 
 export default new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
-})
+  state,
+  getters,
+  mutations,
+  actions
+});
