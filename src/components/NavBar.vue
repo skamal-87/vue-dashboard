@@ -2,10 +2,10 @@
   <div class="nav-bar">
     <ul>
       <li class="card">
-        <a href="#">
+        <router-link to="/">
           <i class="glyphicon glyphicon-comment"></i>
           Dashboard
-        </a>
+        </router-link>
       </li>
       <li class="card">
         <a href="#">
@@ -20,10 +20,10 @@
         </a>
       </li>
       <li class="card">
-        <a href="#">
+        <router-link to="/queueHealthDashboard">
           <i class="glyphicon glyphicon-list-alt"></i>
           Dashboard
-        </a>
+        </router-link>
       </li>
       <li class="card">
         <a href="#">
