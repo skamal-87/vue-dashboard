@@ -1,41 +1,15 @@
 <template>
   <div class="nav-bar">
     <ul>
-      <li class="card">
-        <router-link to="/">
-          <i class="glyphicon glyphicon-comment"></i>
-          Dashboard
+      <li v-for="nav in navOptions" class="card" :class="{ 'sub-nav hidden-nav': nav.subMenu }">
+        <a @click="showNavMenuItems" v-if="nav.subMenuParent">
+          <i class="glyphicon glyphicon-cog" :class="nav.icon"></i>
+          {{ nav.title }}
+        </a>
+        <router-link :to="nav.url" v-if="!nav.subMenuParent">
+          <i class="glyphicon glyphicon-cog" :class="nav.icon"></i>
+          {{ nav.title }}
         </router-link>
-      </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-phone"></i>
-          Dashboard
-        </a>
-      </li>
-      <li class="card">
-        <a href="#" @click="showNavMenuItems">
-          <i class="glyphicon glyphicon-menu-hamburger"></i>
-          Menu
-        </a>
-      </li>
-      <li class="card" :class="{ 'show-nav': hideOtherDashboards }">
-        <router-link to="/queueHealthDashboard">
-          <i class="glyphicon glyphicon-list-alt"></i>
-          Queue Health
-        </router-link>
-      </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-book"></i>
-          Dashboard
-        </a>
-      </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-cog"></i>
-          Dashboard
-        </a>
       </li>
     </ul>
   </div>
@@ -46,12 +20,62 @@
     name: 'NavBar',
     data: () => {
       return {
-        hideOtherDashboards: true
+        navOptions: [
+          {
+            title: 'Dashboard',
+            url: '/',
+            icon: 'glyphicon-comment',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Dashboard',
+            url: '/',
+            icon: 'glyphicon-phone',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Menu',
+            url: '#',
+            icon: 'glyphicon-menu-hamburger',
+            subMenu: false,
+            subMenuParent: true
+          },
+          {
+            title: 'Queue Health',
+            url: '/queueHealthDashboard',
+            icon: 'glyphicon-list-alt',
+            subMenu: true,
+            subMenuParent: false
+          },
+          {
+            title: 'Glossary',
+            url: '/',
+            icon: 'glyphicon-book',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Settings',
+            url: '/',
+            icon: 'glyphicon-cog',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Help',
+            url: '/',
+            icon: 'glyphicon-question-sign',
+            subMenu: false,
+            subMenuParent: false
+          }
+        ]
       }
     },
     methods: {
       showNavMenuItems() {
-        this.hideOtherDashboards = !this.hideOtherDashboards;
+        $('.sub-nav').toggleClass('hidden-nav');
       }
     }
   }
@@ -92,7 +116,7 @@
     padding-top: 10px;
   }
 
-  .show-nav {
+  .hidden-nav {
     display: none;
   }
 </style>

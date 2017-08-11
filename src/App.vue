@@ -81,4 +81,10 @@
     margin-top: 5px;
     margin-bottom: 10px;
   }
+
+  .paginate_button > a {
+    background-color: #1C1436 !important;
+    color: white !important;
+    border-color: white !important;
+  }
 </style>
