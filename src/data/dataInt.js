@@ -36,7 +36,7 @@ export default [
                     }
                     },
                     "metricsTotals":{ "resolvedConversations_byCCP":21, "resolvedConversations_byConsumer":41, "resolvedConversations_bySystem":11, "totalResolvedConversations":103,
-                    "totalHandlingTime_resolvedConversations_byCCP":426, "totalHandlingTime_resolvedConversations_byConsumer":1411, "totalHandlingTime_resolvedConversations_bySystem":215, "totalHandlingTime_resolvedConversations":3248, "avgTime_resolvedConversations_byCCP":20.285715, "avgTime_resolvedConversations_byConsumer":34.414635, "avgTime_resolvedConversations_bySystem":19.545454, "avgTime_resolvedConversations":31.533981
+                    "totalHandlingTime_resolvedConversations_byCCP":426
                     }
                     }
                     }

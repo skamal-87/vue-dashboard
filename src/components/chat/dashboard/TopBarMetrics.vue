@@ -1,6 +1,9 @@
 <template>
   <section>
-    <app-top-bar v-for="agentMetrics in dataInt[0].agentsMetrics.metricsTotals" :agentMetrics="agentMetrics"></app-top-bar>
+    <div v-for="(agentMetrics,index) in dataInt[0].agentsMetrics.metricsTotals" :key="index">
+          <app-top-bar :agentMetrics="agentMetrics" :metricName="index" ></app-top-bar>
+    </div>
+
 
   </section>
 </template>

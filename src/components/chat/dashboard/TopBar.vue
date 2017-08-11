@@ -5,7 +5,7 @@
       <div class="col-md-2 col-sm-4 col-xs-6">
         <div class="card-non-interactive">
           <div class="card-content">
-            <p class="card-title">{{agentMetrics}}
+            <p class="card-title">{{metricName}}
             <p class="card-metric">{{agentMetrics}}</p>
           </div>
         </div>
@@ -16,8 +16,9 @@
 
 <script>
   export default {
-        props: ['agentMetrics'],
+        props: ['agentMetrics','metricName']
   }
+
 </script>
 
 <style scoped>
