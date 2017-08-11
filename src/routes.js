@@ -1,7 +1,7 @@
-import User from './components/user/User.vue';
-import Home from './components/Home.vue';
+import QueueHealth from './components/chat/other/QueueHealth.vue';
+import ChatDashboard from './components/chat/dashboard/ChatDashboard.vue';
 
 export const routes = [
-  { path: '', component: Home },
-  { path: '/user', component: User }
+  { path: '', component: ChatDashboard },
+  { path: '/queueHealthDashboard', component: QueueHealth }
 ];

@@ -3,7 +3,7 @@
     <ul>
       <li class="card">
         <a href="#">
-          <i class="glyphicon glyphicon-dashboard"></i>
+          <i class="glyphicon glyphicon-comment"></i>
           Dashboard
         </a>
       </li>
@@ -21,7 +21,7 @@
       </li>
       <li class="card">
         <a href="#">
-          <i class="glyphicon glyphicon-comment"></i>
+          <i class="glyphicon glyphicon-list-alt"></i>
           Dashboard
         </a>
       </li>

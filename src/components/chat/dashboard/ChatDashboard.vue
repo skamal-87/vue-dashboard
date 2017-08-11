@@ -1,7 +1,6 @@
 <template>
   <section>
     <TopBarMetrics class="tob-bar-metrics"></TopBarMetrics>
-    <QueueHealth></QueueHealth>
   </section>
 </template>
 

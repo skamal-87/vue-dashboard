@@ -62,7 +62,7 @@
   }
 
   .card-non-interactive {
-    padding-top: 10px;
+    padding-top: 20px;
     margin-left: 25px;
     margin-right: 25px;
   }
