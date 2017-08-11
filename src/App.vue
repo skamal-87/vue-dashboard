@@ -16,7 +16,7 @@
       ChatDashboard
     },
     created() {
-      //this.$store.dispatch('initData')
+      this.$store.dispatch('initData')
     }
   }
 </script>

@@ -10,12 +10,12 @@ Vue.use(VueResource);
 
 const router = new VueRouter({
   routes,
-  store,
   mode: 'history'
 });
 
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 });
