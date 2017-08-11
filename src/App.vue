@@ -16,7 +16,8 @@
       ChatDashboard
     },
     created() {
-      this.$store.dispatch('initData')
+      this.$store.dispatch('initData');
+      this.$store.dispatch('fetchQueueHealth');
     }
   }
 </script>
