@@ -14,6 +14,7 @@
 
 <script>
   import DataTable from '../../dataTable/DataTable.vue';
+  import Utils from '../../../utils';
 
   export default {
     name: 'QueueHealth',
@@ -28,11 +29,56 @@
     computed: {
       queueHealthMetrics() {
         let data = this.$store.getters.queueHealthData;
-        let dataArr = [['All', data.metricsTotals.avgTimeToAnswer, data.metricsTotals.totalTimeToAnswer, data.metricsTotals.avgTimeToAbandon, data.metricsTotals.totalTimeToAbandon, data.metricsTotals.abandonmentRate, data.metricsTotals.enteredQEng, data.metricsTotals.abandonedEng, data.metricsTotals.connectedEng, data.metricsTotals.maxQueueSize, data.metricsTotals.minQueueSize, data.metricsTotals.averageQueueSize, data.metricsTotals.currentQueueSize, data.metricsTotals.queueSizeSum, data.metricsTotals.queueSizeCount, data.metricsTotals.currentAvailableSlots, data.metricsTotals.maxAvailableSlots, data.metricsTotals.minAvailableSlots, data.metricsTotals.averageAvailableSlots, data.metricsTotals.availableSlotsSum, data.metricsTotals.availableSlotsCount]];
+        let skillID = "All";
+        let avgTimeToAbandon = Utils.secondsToHms(data.metricsTotals.avgTimeToAbandon);
+        let totalTimeToAnswer = Utils.secondsToHms(data.metricsTotals.totalTimeToAnswer);
+        let totalTimeToAbandon = Utils.secondsToHms(data.metricsTotals.totalTimeToAbandon);
+        let enteredQEng = data.metricsTotals.enteredQEng;
+        let avgTimeToAnswer = Utils.secondsToHms(data.metricsTotals.avgTimeToAnswer);
+        let abandonmentRate = (data.metricsTotals.abandonmentRate * 100).toFixed(0) + "%";
+        let abandonedEng = data.metricsTotals.abandonedEng;
+        let connectedEng = data.metricsTotals.connectedEng;
+        let maxQueueSize = data.metricsTotals.maxQueueSize;
+        let minQueueSize = data.metricsTotals.minQueueSize;
+        let averageQueueSize = (data.metricsTotals.averageQueueSize).toFixed(2);
+        let currentQueueSize = data.metricsTotals.currentQueueSize;
+        let queueSizeSum = data.metricsTotals.queueSizeSum;
+        let queueSizeCount = data.metricsTotals.queueSizeCount;
+        let currentAvailableSlots = data.metricsTotals.currentAvailableSlots;
+        let maxAvailableSlots = data.metricsTotals.maxAvailableSlots;
+        let minAvailableSlots = data.metricsTotals.minAvailableSlots;
+        let averageAvailableSlots = (data.metricsTotals.averageAvailableSlots).toFixed(2);
+        let availableSlotsSum = data.metricsTotals.availableSlotsSum;
+        let availableSlotsCount = data.metricsTotals.availableSlotsCount;
+        let dataArr = [[skillID, avgTimeToAnswer, totalTimeToAnswer, avgTimeToAbandon, totalTimeToAbandon, abandonmentRate, enteredQEng, abandonedEng, connectedEng, maxQueueSize, minQueueSize, averageQueueSize, currentQueueSize, queueSizeSum, queueSizeCount, currentAvailableSlots, maxAvailableSlots, minAvailableSlots, averageAvailableSlots, availableSlotsSum, availableSlotsCount]];
         /* Loop through all skills and add them to the array. */
         Object.keys(data.skillsMetrics).forEach(function(currentKey) {
-          let skillArr = [currentKey,  data.skillsMetrics[currentKey].avgTimeToAnswer,  data.skillsMetrics[currentKey].totalTimeToAnswer,  data.skillsMetrics[currentKey].avgTimeToAbandon,  data.skillsMetrics[currentKey].totalTimeToAbandon,  data.skillsMetrics[currentKey].abandonmentRate,  data.skillsMetrics[currentKey].enteredQEng,  data.skillsMetrics[currentKey].abandonedEng,  data.skillsMetrics[currentKey].connectedEng,  data.skillsMetrics[currentKey].maxQueueSize,  data.skillsMetrics[currentKey].minQueueSize,  data.skillsMetrics[currentKey].averageQueueSize,  data.skillsMetrics[currentKey].currentQueueSize,  data.skillsMetrics[currentKey].queueSizeSum,  data.skillsMetrics[currentKey].queueSizeCount,  data.skillsMetrics[currentKey].currentAvailableSlots,  data.skillsMetrics[currentKey].maxAvailableSlots,  data.skillsMetrics[currentKey].minAvailableSlots,  data.skillsMetrics[currentKey].averageAvailableSlots,  data.skillsMetrics[currentKey].availableSlotsSum,  data.skillsMetrics[currentKey].availableSlotsCount];
-            dataArr.push(skillArr);
+          skillID = currentKey
+          if (currentKey == -1) {
+              skillID = "Unassigned"
+          }
+          avgTimeToAbandon = Utils.secondsToHms(data.skillsMetrics[currentKey].avgTimeToAbandon);
+          totalTimeToAnswer = Utils.secondsToHms(data.skillsMetrics[currentKey].totalTimeToAnswer);
+          totalTimeToAbandon = Utils.secondsToHms(data.skillsMetrics[currentKey].totalTimeToAbandon);
+          enteredQEng = data.skillsMetrics[currentKey].enteredQEng;
+          avgTimeToAnswer = Utils.secondsToHms(data.skillsMetrics[currentKey].avgTimeToAnswer);
+          abandonmentRate = (data.skillsMetrics[currentKey].abandonmentRate * 100).toFixed(0) + "%";
+          abandonedEng = data.skillsMetrics[currentKey].abandonedEng;
+          connectedEng = data.skillsMetrics[currentKey].connectedEng;
+          maxQueueSize = data.skillsMetrics[currentKey].maxQueueSize;
+          minQueueSize = data.skillsMetrics[currentKey].minQueueSize;
+          averageQueueSize = (data.skillsMetrics[currentKey].averageQueueSize).toFixed(2);
+          currentQueueSize = data.skillsMetrics[currentKey].currentQueueSize;
+          queueSizeSum = data.skillsMetrics[currentKey].queueSizeSum;
+          queueSizeCount = data.skillsMetrics[currentKey].queueSizeCount;
+          currentAvailableSlots = data.skillsMetrics[currentKey].currentAvailableSlots;
+          maxAvailableSlots = data.skillsMetrics[currentKey].maxAvailableSlots;
+          minAvailableSlots = data.skillsMetrics[currentKey].minAvailableSlots;
+          averageAvailableSlots = (data.skillsMetrics[currentKey].averageAvailableSlots).toFixed(2);
+          availableSlotsSum = data.skillsMetrics[currentKey].availableSlotsSum;
+          availableSlotsCount = data.skillsMetrics[currentKey].availableSlotsCount;
+          let skillArr = [skillID, avgTimeToAnswer, totalTimeToAnswer, avgTimeToAbandon, totalTimeToAbandon, abandonmentRate, enteredQEng, abandonedEng, connectedEng, maxQueueSize, minQueueSize, averageQueueSize, currentQueueSize, queueSizeSum, queueSizeCount, currentAvailableSlots, maxAvailableSlots, minAvailableSlots, averageAvailableSlots, availableSlotsSum, availableSlotsCount];
+          dataArr.push(skillArr);
         });
         return dataArr;
       },
