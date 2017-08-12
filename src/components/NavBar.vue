@@ -22,14 +22,14 @@
       return {
         navOptions: [
           {
-            title: 'Dashboard',
+            title: 'Chat',
             url: '/',
             icon: 'glyphicon-comment',
             subMenu: false,
             subMenuParent: false
           },
           {
-            title: 'Dashboard',
+            title: 'Messaging',
             url: '/',
             icon: 'glyphicon-phone',
             subMenu: false,
@@ -45,6 +45,13 @@
           {
             title: 'Queue Health',
             url: '/queueHealthDashboard',
+            icon: 'glyphicon-list-alt',
+            subMenu: true,
+            subMenuParent: false
+          },
+          {
+            title: 'Agent Activity',
+            url: '/agentActivityDashboard',
             icon: 'glyphicon-list-alt',
             subMenu: true,
             subMenuParent: false

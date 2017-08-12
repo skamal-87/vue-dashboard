@@ -90,4 +90,9 @@
     color: white !important;
     border-color: white !important;
   }
+
+  .dashboard-graph-widgets {
+    padding-top: 20px;
+    margin: 20px 25px;
+  }
 </style>

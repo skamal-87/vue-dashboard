@@ -1,7 +1,7 @@
 <template>
   <tbody>
-    <tr>
-      <td v-for="value in data">{{ value }}</td>
+    <tr v-for="arr in data">
+      <td v-for="value in arr">{{ value }}</td>
     </tr>
   </tbody>
 </template>

@@ -2,11 +2,11 @@
   <section>
     <section class="card-non-interactive dashboard-graph-widgets">
       <div class="row widget-title">
-        Queue Health
+        Agent Activity
         <hr>
       </div>
       <div class="row">
-        <DataTable :columns="columns" :data="queueHealthMetrics"></DataTable>
+        <DataTable :columns="columns" :data="AgentActivityMetrics"></DataTable>
       </div>
     </section>
   </section>
@@ -16,7 +16,7 @@
   import DataTable from '../../dataTable/DataTable.vue';
 
   export default {
-    name: 'QueueHealth',
+    name: 'AgentActivity',
     components: {
       DataTable
     },
@@ -26,7 +26,7 @@
       }
     },
     computed: {
-      queueHealthMetrics() {
+      AgentActivityMetrics() {
         let data = this.$store.getters.queueHealthData;
         let dataArr = [['All', data.metricsTotals.avgTimeToAnswer, 'Edinburgh', '61', '2011/04/25', '$320,800', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1']];
         return dataArr;
