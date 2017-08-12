@@ -13,9 +13,10 @@ Vue.use(Vuex);
 const state = {
   dataInt: [],
   queueHealthData: {
-    metricsTotals: {
-      avgTimeToAnswer: null
-    }
+  },
+  engagementActivityData: {
+  },
+  agentActivityData: {
   }
 };
 
@@ -25,6 +26,12 @@ const mutations = {
   },
   'FETCH_QUEUE_HEALTH' (state, queueHealthData) {
     state.queueHealthData = queueHealthData;
+  },
+  'FETCH_ENGAGEMENT_ACTIVITY' (state, engagementActivityData) {
+    state.engagementActivityData = engagementActivityData;
+  },
+  'FETCH_AGENT_ACTIVITY' (state, agentActivityData) {
+    state.agentActivityData = agentActivityData;
   }
 };
 
@@ -42,8 +49,14 @@ const actions = {
       });
   },
   fetchQueueHealth: ({ commit }) => {
-    commit('FETCH_QUEUE_HEALTH',qh);
+    commit('FETCH_QUEUE_HEALTH', qh);
   },
+  fetchEngagementActivity: ({ commit }) => {
+    commit('FETCH_ENGAGEMENT_ACTIVITY', engagementActivity);
+  },
+  fetchAgentActivity: ({ commit }) => {
+    commit('FETCH_AGENT_ACTIVITY', agentActivity);
+  }
 };
 
 const getters = {
@@ -52,6 +65,12 @@ const getters = {
   },
   queueHealthData: state => {
     return state.queueHealthData;
+  },
+  engagementActivityData: state => {
+    return state.engagementActivityData;
+  },
+  agentActivityData: state => {
+    return state.agentActivityData;
   }
 };
 
