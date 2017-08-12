@@ -56,7 +56,6 @@ const actions = {
   },
   fetchAgentActivity: ({ commit }) => {
     commit('FETCH_AGENT_ACTIVITY', agentActivity);
-    console.log(agentActivity);
   }
 };
 

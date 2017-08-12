@@ -19,7 +19,8 @@
     mounted: () => {
       $('#example').DataTable({
         responsive: true,
-        "scrollX": true
+        "scrollX": true,
+        "order": [[ 0, "desc" ]]
       });
     }
   }

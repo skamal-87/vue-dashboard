@@ -28,7 +28,7 @@
     computed: {
       AgentActivityMetrics() {
         let data = this.$store.getters.queueHealthData;
-        let dataArr = [['All', data.metricsTotals.avgTimeToAnswer, 'Edinburgh', '61', '2011/04/25', '$320,800', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1']];
+        let dataArr = [['All', data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer, data.metricsTotals.avgTimeToAnswer]];
         return dataArr;
       },
     }
