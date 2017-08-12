@@ -43,6 +43,27 @@
             subMenuParent: true
           },
           {
+            title: 'Agent Activity',
+            url: '/agentActivityDashboard',
+            icon: 'glyphicon-list-alt',
+            subMenu: true,
+            subMenuParent: false
+          },
+          {
+            title: 'Current Queue State',
+            url: '/currentQueue',
+            icon: 'glyphicon-list-alt',
+            subMenu: true,
+            subMenuParent: false
+          },
+          {
+            title: 'Engagement Activity',
+            url: '/engagementActivityDashboard',
+            icon: 'glyphicon-list-alt',
+            subMenu: true,
+            subMenuParent: false
+          },
+          {
             title: 'Queue Health',
             url: '/queueHealthDashboard',
             icon: 'glyphicon-list-alt',
@@ -50,8 +71,8 @@
             subMenuParent: false
           },
           {
-            title: 'Agent Activity',
-            url: '/agentActivityDashboard',
+            title: 'SLA',
+            url: '/slaDashboard',
             icon: 'glyphicon-list-alt',
             subMenu: true,
             subMenuParent: false
@@ -90,7 +111,7 @@
 
 <style scoped>
   .nav-bar {
-    position: fixed;
+    position: absolute;
     width: 90px;
     height: 100%;
     padding-left: 5px;

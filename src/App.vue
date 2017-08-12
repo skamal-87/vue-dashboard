@@ -25,16 +25,6 @@
 </script>
 
 <style scoped>
-  #app {
-    background: #333;
-    background: -webkit-linear-gradient(left top, #024, #402);
-    background: -moz-linear-gradient(bottom right, #024, #402);
-    background: linear-gradient(to bottom right, #024, #402);
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
   .main-container {
     padding-left: 95px;
   }
@@ -45,11 +35,25 @@
 </style>
 
 <style>
+  html {
+    background: #333;
+    background: -webkit-linear-gradient(left top, #024, #402);
+    background: -moz-linear-gradient(bottom right, #024, #402);
+    background: linear-gradient(to bottom right, #024, #402);
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   html, body, #app {
-    height: 100%;
+    min-height: 100%;
     width: 100%;
     color: white;
     text-align: center;
+  }
+
+  body {
+    overflow: auto;
   }
 
   .row {
