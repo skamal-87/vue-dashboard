@@ -39,3 +39,9 @@
     }
   }
 </script>
+
+<style>
+  .dataTables_paginate {
+    margin-top: 5px !important;
+  }
+</style>

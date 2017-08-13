@@ -64,7 +64,7 @@ const actions = {
     commit('FETCH_QUEUE_HEALTH', qh);
   },
   fetchEngagementActivity: ({ commit }) => {
-    commit('FETCH_ENGAGEMENT_ACTIVITY', engagementActivity);
+    commit('FETCH_ENGAGEMENT_ACTIVITY', engagementActivity.body);
   },
   fetchAgentActivity: ({ commit }) => {
     commit('FETCH_AGENT_ACTIVITY', agentActivity);

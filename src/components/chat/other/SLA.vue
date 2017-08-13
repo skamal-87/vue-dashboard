@@ -14,7 +14,6 @@
 
 <script>
   import DataTable from '../../dataTable/DataTable.vue';
-  import Utils from '../../../utils';
 
   export default {
     name: 'SLA',
@@ -47,7 +46,7 @@
           });
         }
         return dataArr;
-      },
+      }
     }
   }
 </script>
