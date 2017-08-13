@@ -7,6 +7,8 @@ import dataInt from '../data/dataInt';
 import qh from '../data/queueHealth';
 import engagementActivity from '../data/engagementActivity';
 import agentActivity from '../data/agentActivity';
+import currentQueue from '../data/currentQueue';
+import SLA from '../data/SLA';
 
 Vue.use(Vuex);
 
@@ -17,6 +19,10 @@ const state = {
   engagementActivityData: {
   },
   agentActivityData: {
+  },
+  currentQueueData: {
+  },
+  slaData: {
   }
 };
 
@@ -32,6 +38,12 @@ const mutations = {
   },
   'FETCH_AGENT_ACTIVITY' (state, agentActivityData) {
     state.agentActivityData = agentActivityData;
+  },
+  'FETCH_CURRENT_QUEUE' (state, currentQueueData) {
+    state.currentQueueData = currentQueueData;
+  },
+  'FETCH_SLA' (state, slaData) {
+    state.slaData = slaData;
   }
 };
 
@@ -56,6 +68,12 @@ const actions = {
   },
   fetchAgentActivity: ({ commit }) => {
     commit('FETCH_AGENT_ACTIVITY', agentActivity);
+  },
+  fetchCurrentQueue: ({ commit }) => {
+    commit('FETCH_CURRENT_QUEUE', currentQueue);
+  },
+  fetchSLA: ({ commit }) => {
+    commit('FETCH_SLA', SLA);
   }
 };
 
@@ -71,6 +89,12 @@ const getters = {
   },
   agentActivityData: state => {
     return state.agentActivityData;
+  },
+  currentQueueData: state => {
+    return state.currentQueueData;
+  },
+  slaData: state => {
+    return state.slaData;
   }
 };
 

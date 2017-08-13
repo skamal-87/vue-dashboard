@@ -16,7 +16,7 @@ const main = {
       token: config.token,
       token_secret: config.token_secret
     };
-    let url = 'https://' + config.realtime_base_domain + '/operations/api/account/' + config.account_id + '/queuehealth?timeframe=1440&v=1&skillIds=all';
+    let url = 'https://' + config.realtime_base_domain + '/operations/api/account/' + config.account_id + '/queuestatesla?timeframe=1440&v=1&skillIds=all';
     request.get({
       url: url,
       oauth: oauth,

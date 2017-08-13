@@ -55,7 +55,7 @@
         Object.keys(data.skillsMetrics).forEach(function(currentKey) {
           skillID = currentKey
           if (currentKey == -1) {
-              skillID = "Unassigned"
+            skillID = "Unassigned"
           }
           avgTimeToAbandon = Utils.secondsToHms(data.skillsMetrics[currentKey].avgTimeToAbandon);
           totalTimeToAnswer = Utils.secondsToHms(data.skillsMetrics[currentKey].totalTimeToAnswer);

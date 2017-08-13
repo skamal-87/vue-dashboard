@@ -36,7 +36,7 @@
             subMenuParent: false
           },
           {
-            title: 'Menu',
+            title: 'Chat Menu',
             url: '#',
             icon: 'glyphicon-menu-hamburger',
             subMenu: false,
