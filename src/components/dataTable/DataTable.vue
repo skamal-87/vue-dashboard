@@ -1,5 +1,5 @@
 <template>
-  <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+  <table :id="tableID" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <DataTableHead :columns="columns"></DataTableHead>
     <DataTableBody :data="data"></DataTableBody>
   </table>
@@ -15,9 +15,23 @@
       DataTableHead,
       DataTableBody
     },
-    props: ['columns', 'data'],
-    mounted: () => {
-      $('#example').DataTable({
+    props: {
+      columns: {
+        type: Array,
+        required: true
+      },
+      data: {
+        type: Array,
+        required: true
+      },
+      tableID: {
+        type: String,
+        required: false,
+        default: 'example'
+      }
+    },
+    mounted() {
+      $('#' + this.tableID).DataTable({
         responsive: true,
         "scrollX": true,
         "order": [[ 0, "desc" ]]
