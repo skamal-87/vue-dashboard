@@ -16,16 +16,12 @@
       ChatDashboard
     },
     created() {
-<<<<<<< HEAD
-      this.$store.dispatch('initData')
-=======
       this.$store.dispatch('initData');
       this.$store.dispatch('fetchQueueHealth');
       this.$store.dispatch('fetchEngagementActivity');
       this.$store.dispatch('fetchAgentActivity');
       this.$store.dispatch('fetchCurrentQueue');
       this.$store.dispatch('fetchSLA');
->>>>>>> master
     }
   }
 </script>
