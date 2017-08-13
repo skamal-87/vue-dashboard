@@ -10,6 +10,14 @@
           </div>
         </div>
       </div>
+      <div class="col-md-2 col-sm-4 col-xs-6">
+        <div class="card-non-interactive">
+          <div class="card-content">
+            <p class="card-title">{{metricName}}
+            <p class="card-metric">{{agentMetrics}}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
