@@ -1,7 +1,6 @@
 <template>
   <section>
     <TopBarMetrics class="tob-bar-metrics"></TopBarMetrics>
-    <QueueHealth></QueueHealth>
   </section>
 </template>
 
@@ -20,6 +19,6 @@
 
 <style scoped>
   .tob-bar-metrics {
-    padding-top: 1em;
+    margin-top: 20px;
   }
 </style>

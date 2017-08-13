@@ -1,41 +1,15 @@
 <template>
   <div class="nav-bar">
     <ul>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-dashboard"></i>
-          Dashboard
+      <li v-for="nav in navOptions" class="card" :class="{ 'sub-nav hidden-nav': nav.subMenu }">
+        <a @click="showNavMenuItems" v-if="nav.subMenuParent">
+          <i class="glyphicon glyphicon-cog" :class="nav.icon"></i>
+          {{ nav.title }}
         </a>
-      </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-phone"></i>
-          Dashboard
-        </a>
-      </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-menu-hamburger"></i>
-          Dashboard
-        </a>
-      </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-comment"></i>
-          Dashboard
-        </a>
-      </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-book"></i>
-          Dashboard
-        </a>
-      </li>
-      <li class="card">
-        <a href="#">
-          <i class="glyphicon glyphicon-cog"></i>
-          Dashboard
-        </a>
+        <router-link :to="nav.url" v-if="!nav.subMenuParent">
+          <i class="glyphicon glyphicon-cog" :class="nav.icon"></i>
+          {{ nav.title }}
+        </router-link>
       </li>
     </ul>
   </div>
@@ -43,13 +17,101 @@
 
 <script>
   export default {
-    name: 'NavBar'
+    name: 'NavBar',
+    data: () => {
+      return {
+        navOptions: [
+          {
+            title: 'Chat',
+            url: '/',
+            icon: 'glyphicon-comment',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Messaging',
+            url: '/',
+            icon: 'glyphicon-phone',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Chat Menu',
+            url: '#',
+            icon: 'glyphicon-menu-hamburger',
+            subMenu: false,
+            subMenuParent: true
+          },
+          {
+            title: 'Agent Activity',
+            url: '/agentActivityDashboard',
+            icon: 'glyphicon-list-alt',
+            subMenu: true,
+            subMenuParent: false
+          },
+          {
+            title: 'Current Queue State',
+            url: '/currentQueue',
+            icon: 'glyphicon-list-alt',
+            subMenu: true,
+            subMenuParent: false
+          },
+          {
+            title: 'Engagement Activity',
+            url: '/engagementActivityDashboard',
+            icon: 'glyphicon-list-alt',
+            subMenu: true,
+            subMenuParent: false
+          },
+          {
+            title: 'Queue Health',
+            url: '/queueHealthDashboard',
+            icon: 'glyphicon-list-alt',
+            subMenu: true,
+            subMenuParent: false
+          },
+          {
+            title: 'SLA',
+            url: '/slaDashboard',
+            icon: 'glyphicon-list-alt',
+            subMenu: true,
+            subMenuParent: false
+          },
+          {
+            title: 'Glossary',
+            url: '/',
+            icon: 'glyphicon-book',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Settings',
+            url: '/',
+            icon: 'glyphicon-cog',
+            subMenu: false,
+            subMenuParent: false
+          },
+          {
+            title: 'Help',
+            url: '/',
+            icon: 'glyphicon-question-sign',
+            subMenu: false,
+            subMenuParent: false
+          }
+        ]
+      }
+    },
+    methods: {
+      showNavMenuItems() {
+        $('.sub-nav').toggleClass('hidden-nav');
+      }
+    }
   }
 </script>
 
 <style scoped>
   .nav-bar {
-    position: fixed;
+    position: absolute;
     width: 90px;
     height: 100%;
     padding-left: 5px;
@@ -80,5 +142,9 @@
     color: #00d1b2;
     font-size: 25px;
     padding-top: 10px;
+  }
+
+  .hidden-nav {
+    display: none;
   }
 </style>

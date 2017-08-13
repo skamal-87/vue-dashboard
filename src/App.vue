@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container-fluid">
     <NavBar></NavBar>
-    <ChatDashboard class="main-container"></ChatDashboard>
+    <router-view class="main-container"></router-view>
   </div>
 </template>
 
@@ -16,22 +16,21 @@
       ChatDashboard
     },
     created() {
+<<<<<<< HEAD
       this.$store.dispatch('initData')
+=======
+      this.$store.dispatch('initData');
+      this.$store.dispatch('fetchQueueHealth');
+      this.$store.dispatch('fetchEngagementActivity');
+      this.$store.dispatch('fetchAgentActivity');
+      this.$store.dispatch('fetchCurrentQueue');
+      this.$store.dispatch('fetchSLA');
+>>>>>>> master
     }
   }
 </script>
 
 <style scoped>
-  #app {
-    background: #333;
-    background: -webkit-linear-gradient(left top, #024, #402);
-    background: -moz-linear-gradient(bottom right, #024, #402);
-    background: linear-gradient(to bottom right, #024, #402);
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
   .main-container {
     padding-left: 95px;
   }
@@ -42,11 +41,25 @@
 </style>
 
 <style>
+  html {
+    background: #333;
+    background: -webkit-linear-gradient(left top, #024, #402) fixed;
+    background: -moz-linear-gradient(bottom right, #024, #402) fixed;
+    background: linear-gradient(to bottom right, #024, #402) fixed;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   html, body, #app {
-    height: 100%;
+    min-height: 100%;
     width: 100%;
     color: white;
     text-align: center;
+  }
+
+  body {
+    overflow: auto;
   }
 
   .row {
@@ -80,5 +93,16 @@
   hr {
     margin-top: 5px;
     margin-bottom: 10px;
+  }
+
+  .paginate_button > a {
+    background-color: #1C1436 !important;
+    color: white !important;
+    border-color: white !important;
+  }
+
+  .dashboard-graph-widgets {
+    padding-top: 20px;
+    margin: 20px 25px;
   }
 </style>
