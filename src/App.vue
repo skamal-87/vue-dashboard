@@ -37,9 +37,9 @@
 <style>
   html {
     background: #333;
-    background: -webkit-linear-gradient(left top, #024, #402);
-    background: -moz-linear-gradient(bottom right, #024, #402);
-    background: linear-gradient(to bottom right, #024, #402);
+    background: -webkit-linear-gradient(left top, #024, #402) fixed;
+    background: -moz-linear-gradient(bottom right, #024, #402) fixed;
+    background: linear-gradient(to bottom right, #024, #402) fixed;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
