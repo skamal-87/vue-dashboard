@@ -1,96 +1,87 @@
 <template>
   <section>
-    <section class="card-non-interactive">
+    <section class="card-non-interactive dashboard-graph-widgets">
       <div class="row widget-title">
         Queue Health
         <hr>
       </div>
       <div class="row">
-        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-          <thead>
-            <tr>
-              <th>Skill ID</th>
-              <th>Avg. Time To Ans.</th>
-              <th>Total Time To Ans.</th>
-              <th>Avg. Time To Abandon</th>
-              <th>Total Time To Abandon</th>
-              <th>Abandon Rate</th>
-              <th>Entered Queue</th>
-              <th>Abandoned Chats</th>
-              <th>Connected</th>
-              <th>Max Queue Size</th>
-              <th>Min Queue Size</th>
-              <th>Avg. Queue Size</th>
-              <th>Current Queue Size</th>
-              <th>Queue Size Sum</th>
-              <th>Queue Size Count</th>
-              <th>Current Avail. Slots</th>
-              <th>Max Avail. Slots</th>
-              <th>Min Avail. Slots</th>
-              <th>Avg. Avail. Slots</th>
-              <th>Avail. Sum</th>
-              <th>Avail. Count</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>All</td>
-              <td>{{ queueHealthMetrics.metricsTotals.avgTimeToAnswer }}</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-              <td>2011/04/25</td>
-              <td>$320,800</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-          </tbody>
-        </table>
+        <DataTable :columns="columns" :data="queueHealthMetrics"></DataTable>
       </div>
     </section>
   </section>
 </template>
 
 <script>
+  import DataTable from '../../dataTable/DataTable.vue';
+  import Utils from '../../../utils';
+
   export default {
     name: 'QueueHealth',
-    mounted: () => {
-      $('#example').DataTable({
-        responsive: true,
-        "scrollX": true
-      });
+    components: {
+      DataTable
+    },
+    data: () => {
+      return {
+        columns: [['Skill ID', 'Avg. Time To Ans.', 'Total Time To Ans.', 'Avg. Time To Abandon', 'Total Time To Abandon', 'Abandon Rate', 'Entered Queue', 'Abandoned Chats', 'Connected', 'Max Queue Size', 'Min Queue Size', 'Avg. Queue Size', 'Current Queue Size', 'Queue Size Sum', 'Queue Size Count', 'Current Avail. Slots', 'Max Avail. Slots', 'Min Avail. Slots', 'Avg. Avail. Slots', 'Avail. Sum', 'Avail. Count']]
+      }
     },
     computed: {
       queueHealthMetrics() {
-        return this.$store.getters.queueHealthData;
-      }
+        let data = this.$store.getters.queueHealthData;
+        let skillID = "All";
+        let avgTimeToAbandon = Utils.secondsToHms(data.metricsTotals.avgTimeToAbandon);
+        let totalTimeToAnswer = Utils.secondsToHms(data.metricsTotals.totalTimeToAnswer);
+        let totalTimeToAbandon = Utils.secondsToHms(data.metricsTotals.totalTimeToAbandon);
+        let enteredQEng = data.metricsTotals.enteredQEng;
+        let avgTimeToAnswer = Utils.secondsToHms(data.metricsTotals.avgTimeToAnswer);
+        let abandonmentRate = (data.metricsTotals.abandonmentRate * 100).toFixed(0) + "%";
+        let abandonedEng = data.metricsTotals.abandonedEng;
+        let connectedEng = data.metricsTotals.connectedEng;
+        let maxQueueSize = data.metricsTotals.maxQueueSize;
+        let minQueueSize = data.metricsTotals.minQueueSize;
+        let averageQueueSize = (data.metricsTotals.averageQueueSize).toFixed(2);
+        let currentQueueSize = data.metricsTotals.currentQueueSize;
+        let queueSizeSum = data.metricsTotals.queueSizeSum;
+        let queueSizeCount = data.metricsTotals.queueSizeCount;
+        let currentAvailableSlots = data.metricsTotals.currentAvailableSlots;
+        let maxAvailableSlots = data.metricsTotals.maxAvailableSlots;
+        let minAvailableSlots = data.metricsTotals.minAvailableSlots;
+        let averageAvailableSlots = (data.metricsTotals.averageAvailableSlots).toFixed(2);
+        let availableSlotsSum = data.metricsTotals.availableSlotsSum;
+        let availableSlotsCount = data.metricsTotals.availableSlotsCount;
+        let dataArr = [[skillID, avgTimeToAnswer, totalTimeToAnswer, avgTimeToAbandon, totalTimeToAbandon, abandonmentRate, enteredQEng, abandonedEng, connectedEng, maxQueueSize, minQueueSize, averageQueueSize, currentQueueSize, queueSizeSum, queueSizeCount, currentAvailableSlots, maxAvailableSlots, minAvailableSlots, averageAvailableSlots, availableSlotsSum, availableSlotsCount]];
+        /* Loop through all skills and add them to the array. */
+        Object.keys(data.skillsMetrics).forEach(function(currentKey) {
+          skillID = currentKey
+          if (currentKey == -1) {
+            skillID = "Unassigned"
+          }
+          avgTimeToAbandon = Utils.secondsToHms(data.skillsMetrics[currentKey].avgTimeToAbandon);
+          totalTimeToAnswer = Utils.secondsToHms(data.skillsMetrics[currentKey].totalTimeToAnswer);
+          totalTimeToAbandon = Utils.secondsToHms(data.skillsMetrics[currentKey].totalTimeToAbandon);
+          enteredQEng = data.skillsMetrics[currentKey].enteredQEng;
+          avgTimeToAnswer = Utils.secondsToHms(data.skillsMetrics[currentKey].avgTimeToAnswer);
+          abandonmentRate = (data.skillsMetrics[currentKey].abandonmentRate * 100).toFixed(0) + "%";
+          abandonedEng = data.skillsMetrics[currentKey].abandonedEng;
+          connectedEng = data.skillsMetrics[currentKey].connectedEng;
+          maxQueueSize = data.skillsMetrics[currentKey].maxQueueSize;
+          minQueueSize = data.skillsMetrics[currentKey].minQueueSize;
+          averageQueueSize = (data.skillsMetrics[currentKey].averageQueueSize).toFixed(2);
+          currentQueueSize = data.skillsMetrics[currentKey].currentQueueSize;
+          queueSizeSum = data.skillsMetrics[currentKey].queueSizeSum;
+          queueSizeCount = data.skillsMetrics[currentKey].queueSizeCount;
+          currentAvailableSlots = data.skillsMetrics[currentKey].currentAvailableSlots;
+          maxAvailableSlots = data.skillsMetrics[currentKey].maxAvailableSlots;
+          minAvailableSlots = data.skillsMetrics[currentKey].minAvailableSlots;
+          averageAvailableSlots = (data.skillsMetrics[currentKey].averageAvailableSlots).toFixed(2);
+          availableSlotsSum = data.skillsMetrics[currentKey].availableSlotsSum;
+          availableSlotsCount = data.skillsMetrics[currentKey].availableSlotsCount;
+          let skillArr = [skillID, avgTimeToAnswer, totalTimeToAnswer, avgTimeToAbandon, totalTimeToAbandon, abandonmentRate, enteredQEng, abandonedEng, connectedEng, maxQueueSize, minQueueSize, averageQueueSize, currentQueueSize, queueSizeSum, queueSizeCount, currentAvailableSlots, maxAvailableSlots, minAvailableSlots, averageAvailableSlots, availableSlotsSum, availableSlotsCount];
+          dataArr.push(skillArr);
+        });
+        return dataArr;
+      },
     }
   }
 </script>
-
-<style scoped>
-  .table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: transparent;
-  }
-
-  .card-non-interactive {
-    padding-top: 20px;
-    margin: 20px 25px;
-  }
-
-  thead {
-    color: #00d1b2;
-  }
-</style>
