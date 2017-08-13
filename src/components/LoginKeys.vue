@@ -10,8 +10,7 @@
                                 type="text"
                                 id="account"
                                 class="form-control"
-                                :value="accountData.account"
-                                @change="accountData.account = $event.target.value">
+                                :value="accountData.account">
                     </div>
                     <div class="form-group">
                         <label for="apiKey">API Key</label>
@@ -77,6 +76,7 @@
     methods: {
       submit() {
         var credentials = {
+          // change this to accountData details
           username: this.credentials.username,
           password: this.credentials.password
         }
