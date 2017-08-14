@@ -1,39 +1,37 @@
 <template>
   <div>
-          <div class="col-sm-4 col-sm-offset-4">
-            <label for="loginApi"><h2>Log In</h2></label>
-            <app-switch v-model="loginApi"></app-switch>
-    <transition name ="slide" mode="out-in">
-        <div v-if="loginApi">
-                <h1>LiveEngage Authentication </h1>
-                <hr>
-                <p>Input your LiveEngage credentials to access your dashboard!</p>
-                <div class="alert alert-danger" v-if="error">
-                    <p>{{ error }}</p>
-                </div>
-                <div class="form-group">
-                    <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter your username"
-                    v-model="credentials.username"
-                    >
-                </div>
-                <div class="form-group">
-                    <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Enter your password"
-                    v-model="credentials.password"
-                    >
-                </div>
-                <button class="btn btn-primary" @click="submit()">Access</button>
-                <p>{{checkCred}}</p>
-        
+    <div class="col-sm-4 col-sm-offset-4">
+      <label for="loginApi"><h2>Log In</h2></label>
+      <app-switch v-model="loginApi"></app-switch>
+      <transition name ="slide" mode="out-in">
+      <div v-if="loginApi">
+        <h1>LiveEngage Authentication </h1>
+        <hr>
+        <p>Input your LiveEngage credentials to access your dashboard!</p>
+        <div class="alert alert-danger" v-if="error">
+          <p>{{ error }}</p>
         </div>
-            <div v-else>
-                    <app-login-keys></app-login-keys>
-            </div>
+        <div class="form-group">
+          <input
+          type="text"
+          class="form-control"
+          placeholder="Enter your username"
+          v-model="credentials.username"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Enter your password"
+            v-model="credentials.password"
+          />
+        </div>
+        <button class="btn btn-primary" @click="submit()">Access</button>
+        </div>
+        <div v-else>
+          <app-login-keys></app-login-keys>
+        </div>
     </transition>
 
     </div>
@@ -64,18 +62,11 @@
           password: this.credentials.password,
           loginApi: this.loginApi
         }
-        // We need to pass the component's this context
-        // to properly make use of http in the auth service
-       this.$store.dispatch('leAuth', credentials)
-       this.username = ''
-       this.password = ''
+          this.$store.dispatch('leAuth', credentials)
+          this.username = ''
+          this.password = ''
       }
     },
-    computed: {
-        checkCred () {
-            return this.$store.getters.userCredentials;
-          }
-        },
     components: {
         appSwitch: Switch,
         appLoginKeys: LoginKeys
