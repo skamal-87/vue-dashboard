@@ -28,6 +28,7 @@
                     >
                 </div>
                 <button class="btn btn-primary" @click="submit()">Access</button>
+                <p>{{checkCred}}</p>
         
         </div>
             <div v-else>
@@ -60,13 +61,21 @@
       submit() {
         var credentials = {
           username: this.credentials.username,
-          password: this.credentials.password
+          password: this.credentials.password,
+          loginApi: this.loginApi
         }
         // We need to pass the component's this context
         // to properly make use of http in the auth service
-        auth.login(this, credentials, 'secretquote')
+       this.$store.dispatch('leAuth', credentials)
+       this.username = ''
+       this.password = ''
       }
     },
+    computed: {
+        checkCred () {
+            return this.$store.getters.userCredentials;
+          }
+        },
     components: {
         appSwitch: Switch,
         appLoginKeys: LoginKeys
