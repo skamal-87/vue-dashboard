@@ -10,7 +10,7 @@
                                 type="text"
                                 id="account"
                                 class="form-control"
-                                :value="accountData.account">
+                                v-model.lazy="accountData.account">
                     </div>
                     <div class="form-group">
                         <label for="apiKey">API Key</label>
@@ -47,6 +47,7 @@
                 </div>
             </div>
             <button class="btn btn-primary" @click="submit()">Access</button>
+            <p>{{checkKeys}}</p>
             </div>
         </div>
     </div>
@@ -59,10 +60,6 @@
       return {
         // We need to initialize the component with any
         // properties that will be used in it
-        credentials: {
-          username: '',
-          password: ''
-        },
         error: '',
         accountData: {
             account: '',
@@ -75,16 +72,30 @@
     },
     methods: {
       submit() {
-        var credentials = {
+        var apiKeys = {
           // change this to accountData details
-          username: this.credentials.username,
-          password: this.credentials.password
-        }
+            account: this.accountData.account,
+            apiKey: this.accountData.apiKey,
+            secret: this.accountData.secret,
+            accessToken: this.accountData.accessToken,
+            accessSecret: this.accountData.accessSecret
+        }       
+          this.$store.dispatch('keysAuth', apiKeys)
+            this.accountData.account = ''
+            this.accountData.apiKey = ''
+            this.accountData.secret = ''
+            this.accountData.accessToken = ''
+            this.accountData.accessSecret = ''
         // We need to pass the component's this context
         // to properly make use of http in the auth service
-        auth.login(this, credentials, 'secretquote')
+        
       }
-    }
+    },
+      computed: {
+        checkKeys () {
+            return this.$store.getters.userKeys;
+          }
+        },
 
   }
   </script>
