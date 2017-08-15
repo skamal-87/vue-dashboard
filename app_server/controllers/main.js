@@ -4,10 +4,11 @@
 
 const request = require('request');
 const config = require('../config');
+const utils = require('../utils');
 
 const main = {
   test: function (req, res) {
-    res.json({'hi':1});
+    utils.sendSuccessResponse('this is a test', res);
   },
 
   getQueueHealth: function(req, res) {
@@ -26,27 +27,9 @@ const main = {
         'Content-Type': 'application/json'
       }
     }, (e, r, b) => {
-      res.json(b);
+      utils.sendSuccessResponse(b, res);
     });
   }
 };
-
-let sendErrorResponse = (error, response) => {
-  response.status(401);
-  response.json({
-    "status": 401,
-    "message": "Error",
-    "error": error
-  });
-};
-
-let sendSuccessResponse = (data, response) => {
-  response.status(200);
-  response.json({
-    "status": 200,
-    "message": "Success",
-    "data": data
-  });
-}
 
 module.exports = main;
