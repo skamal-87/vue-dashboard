@@ -4,6 +4,9 @@
 
 const request = require('request');
 const config = require('../config');
+const Domain = require("le-api").Domain;
+
+let domain = new Domain();
 
 const main = {
   test: function (req, res) {
@@ -26,6 +29,26 @@ const main = {
       }
     }, (e, r, b) => {
       res.json(b);
+    });
+  },
+  getDomain: (req, res) => {
+    let accountNumber = req.body.accountNumber;
+    domain.getLeDataReportingDomain(accountNumber, function(err, data) {
+      if(err){
+        res.status(401);
+        res.json({
+          "status": 401,
+          "message": "Error",
+          "error": err
+        });
+      }else{
+        res.status(200);
+        res.json({
+          "status": 200,
+          "message": "Success",
+          "data": data
+        });
+      }
     });
   }
 };
