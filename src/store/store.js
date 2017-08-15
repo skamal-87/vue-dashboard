@@ -9,6 +9,7 @@ import engagementActivity from '../data/engagementActivity';
 import agentActivity from '../data/agentActivity';
 import currentQueue from '../data/currentQueue';
 import SLA from '../data/SLA';
+import auth from './modules/auth'
 
 Vue.use(Vuex);
 
@@ -102,5 +103,6 @@ export default new Vuex.Store({
   state,
   getters,
   mutations,
-  actions
+  actions,
+  modules: {auth}
 });
