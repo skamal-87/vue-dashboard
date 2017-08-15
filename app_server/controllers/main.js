@@ -4,14 +4,12 @@
 
 const request = require('request');
 const config = require('../config');
-const Domain = require('le-api').Domain; 
-const Credentials = require('le-api').Credentials;
 
 const main = {
   test: function (req, res) {
     res.json({'hi':1});
   },
-  
+
   getQueueHealth: function(req, res) {
     let oauth = {
       consumer_key: config.consumer_key,
@@ -29,38 +27,6 @@ const main = {
       }
     }, (e, r, b) => {
       res.json(b);
-    });
-  },
-
-  getDomain: (req, res) => {
-    let domain = new Domain();
-    let accountNumber = req.body.accountNumber;
-    domain.getLeDataReportingDomain(accountNumber, function(err, data) {
-      if (err) {
-        sendErrorResponse(err, res);
-      }else{
-        sendSuccessResponse(data, res);
-      }
-    });
-  },
-
-  getBearerToken: (req, res) => {
-    let creds = new Credentials();
-    let accountNumber = req.body.accountNumber;
-    let userName = req.body.userName;
-    let password = req.body.password;
-    creds.init(accountNumber, null, { username: userName, password: password }, (err, data) => {
-      if (err) {
-        sendErrorResponse(err, res);
-      }else{
-        creds.login(function(err, data) {
-          if(err){
-            sendErrorResponse(err, res);
-          }else{
-            sendSuccessResponse(creds.bearerToken, res);
-          }
-        });
-      }
     });
   }
 };
