@@ -10,5 +10,6 @@ const main = require('../controllers/main.js');
 router.get('/api/v1/test', main.test);
 router.get('/api/v1/getQueueHealth', main.getQueueHealth);
 router.post('/api/v1/getDomain', main.getDomain);
+router.post('/api/v1/getBearerToken', main.getBearerToken);
  
 module.exports = router;
