@@ -86,7 +86,7 @@
           },
           {
             title: 'Settings',
-            url: '/',
+            url: '/settings',
             icon: 'glyphicon-cog',
             subMenu: false,
             subMenuParent: false
