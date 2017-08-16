@@ -23,7 +23,7 @@
             v-model="credentials.password"
           />
         </div>
-        <button class="btn btn-primary" @click="submit()">Access</button>
+        <button class="btn btn-primary" :class="{'submitted': submitted}" @click="submit()">{{submitted ? submitText : buttonText}}</button>
 
     </div>
 </div>
@@ -31,10 +31,17 @@
 
 <script>
   export default {
+    mounted() {
+  	//you don't have to use props like I did with this.model, you could read from a vuex getter
+    this.credentials = JSON.parse(JSON.stringify(this.$store.getters.userAuthBody.userCredentials))
+  },
     data() {
       return {
         // We need to initialize the component with any
         // properties that will be used in it
+        submitted: false,
+        submitText: 'Submitted!',
+        buttonText: 'Submit',
         credentials: {
           username: '',
           password: ''
@@ -53,12 +60,19 @@
           this.$store.dispatch('leAuth', credentials)
             this.credentials.username = ''
             this.credentials.password = ''
+            this.submitted = true
       }
     }
 
   }
-  </script>
-  <style scoped>
+</script>
+<style scoped>
+
+  .submitted {
+    background-color: #FFA500;
+    outline-color: #FFA500;
+  }
+
   .nav-bar {
     position: absolute;
     width: 90px;

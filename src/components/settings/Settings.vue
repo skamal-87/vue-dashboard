@@ -1,10 +1,10 @@
 <template>
   <div>
         <p>The Settings Component</p>
-        <div v-show="usingKeys"> 
+        <div v-show="usingKeys.usingKeys"> 
             <app-keys-display></app-keys-display>
         </div>
-        <div v-show="!usingKeys"> 
+        <div v-show="!usingKeys.usingKeys"> 
             <app-login-display></app-login-display>
         </div> 
 </div>
@@ -17,7 +17,7 @@ import LoginDisplay from './LoginDisplay.vue'
   export default {
     computed: {
         ...mapGetters({
-            usingKeys: 'usingKeys'
+            usingKeys: 'userAuthBody'
         })
     },
     data() {

@@ -93,7 +93,7 @@
     },
       computed: {
         checkKeys () {
-            return this.$store.getters.userKeys;
+            return this.$store.getters.userAuthBody;
           }
         },
 

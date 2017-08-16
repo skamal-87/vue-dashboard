@@ -46,20 +46,26 @@
       </div>
     </div>
   </div>
-      <button class="btn btn-primary" @click="submit()">Access</button>
-      <p>{{checkKeys}}</p>
+      <button class="btn btn-primary" :class="{'submitted': submitted}" @click="submit()">{{submitted ? submitText : buttonText}}</button>
       </div>
     </div>
   </div>
 </template>
 
-  <script>
+<script>
   export default {
+    mounted() {
+  	//you don't have to use props like I did with this.model, you could read from a vuex getter
+    this.accountData  = JSON.parse(JSON.stringify(this.$store.getters.userAuthBody.userKeys))
+  },
     data() {
       return {
         // We need to initialize the component with any
         // properties that will be used in it
         error: '',
+        submitted: false,
+        submitText: 'Submitted!',
+        buttonText: 'Submit',
         accountData: {
             account: '',
             apiKey: '',
@@ -80,25 +86,24 @@
             accessSecret: this.accountData.accessSecret
         }       
           this.$store.dispatch('keysAuth', apiKeys)
-            this.accountData.account = ''
-            this.accountData.apiKey = ''
-            this.accountData.secret = ''
-            this.accountData.accessToken = ''
-            this.accountData.accessSecret = ''
+          this.submitted = true
+          this.accountData.account = ''
+          this.accountData.apiKey = ''
+          this.accountData.secret = ''
+          this.accountData.accessToken = ''
+          this.accountData.accessSecret = ''
         // We need to pass the component's this context
         // to properly make use of http in the auth service
         
       }
-    },
-      computed: {
-        checkKeys () {
-            return this.$store.getters.userKeys;
-          }
-        },
-
+    }
   }
   </script>
   <style scoped>
+  .submitted {
+    background-color: #FFA500;
+    outline-color: #FFA500;
+  }
   .nav-bar {
     position: absolute;
     width: 90px;
@@ -112,6 +117,8 @@
     padding: 0px;
     padding-top: 5px;
   }
+
+
 
   li {
     margin-bottom: 10px;
