@@ -6,14 +6,12 @@
 </template>
 
 <script>
-  import NavBar from './components/NavBar.vue';
-  import ChatDashboard from './components/chat/dashboard/ChatDashboard.vue';
+  import NavBar from './components/navbar/NavBar.vue';
 
   export default {
     name: 'app',
     components: {
-      NavBar,
-      ChatDashboard
+      NavBar
     },
     created() {
       this.$store.dispatch('initData');

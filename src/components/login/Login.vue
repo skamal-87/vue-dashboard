@@ -39,9 +39,9 @@
 </template>
 
   <script>
-  import Switch from '../other/Switch.vue'
+  import Switch from '../../other/Switch.vue'
   import LoginKeys from './LoginKeys.vue'
-  import auth from '../auth'
+  import auth from '../../auth'
   export default {
     data() {
       return {
