@@ -4,11 +4,13 @@
 
 const request = require('request');
 const config = require('../config');
+const utils = require('../utils');
 
 const main = {
   test: function (req, res) {
-    res.json({'hi':1});
+    utils.sendSuccessResponse('this is a test', res);
   },
+
   getQueueHealth: function(req, res) {
     let oauth = {
       consumer_key: config.consumer_key,
@@ -25,7 +27,7 @@ const main = {
         'Content-Type': 'application/json'
       }
     }, (e, r, b) => {
-      res.json(b);
+      utils.sendSuccessResponse(b, res);
     });
   }
 };

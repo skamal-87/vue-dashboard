@@ -30,7 +30,7 @@
           },
           {
             title: 'Messaging',
-            url: '/',
+            url: '/MessagingDashboard',
             icon: 'glyphicon-phone',
             subMenu: false,
             subMenuParent: false
