@@ -18,8 +18,8 @@
 </template>
 
 <script>
-  import TopBarMetrics from './TopBarMetrics.vue';
-  import QueueHealth from '../other/QueueHealth.vue';
+  import TopBarMetrics from '../shared/topbar/TopBarMetrics.vue';
+  import QueueHealth from './QueueHealth.vue';
 
   export default {
     name: 'ChatDashboard',
