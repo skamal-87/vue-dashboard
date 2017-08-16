@@ -22,7 +22,6 @@
       this.$store.dispatch('fetchAgentActivity');
       this.$store.dispatch('fetchCurrentQueue');
       this.$store.dispatch('fetchSLA');
-      this.$store.dispatch('fetchMessageSummary');
     }
   }
 </script>
