@@ -3,8 +3,6 @@
     <div v-for="(agentMetrics,index) in dataInt[0].agentsMetrics.metricsTotals" :key="index">
       <app-top-bar :agentMetrics="agentMetrics" :metricName="index" ></app-top-bar>
     </div>
-
-
   </section>
 </template>
 
@@ -17,7 +15,17 @@ import TopBar from './TopBar.vue'
     },
     computed: {
       dataInt() {
-        return this.$store.getters.dataInt;
+        let tempArr = [];
+        let data = this.$store.getters.dataInt;
+        Object.keys(data[0].agentsMetrics.metricsTotals).forEach(function(currentKey) {
+          let obj = {
+            name: currentKey,
+            metric: data[0].agentsMetrics.metricsTotals[currentKey]
+          };
+          tempArr.push(obj);
+        });
+        console.log(tempArr);
+        return tempArr;
       }
     }
   }
