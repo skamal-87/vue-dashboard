@@ -1,6 +1,6 @@
 <template>
   <section>
-    <TopBarMetrics class="tob-bar-metrics"></TopBarMetrics>
+    <TopBar2 class="tob-bar-metrics"></TopBar2>
     <!-- Current Queue Status / Combined Skill Status (shows skill online/offline) -->
       <!-- Current Queue Status -->
         <!-- current queue data
@@ -20,11 +20,12 @@
 <script>
   import TopBarMetrics from '../shared/topbar/TopBarMetrics.vue';
   import QueueHealth from './QueueHealth.vue';
+  import TopBar2 from '../shared/topbar/TopBar2.vue';
 
   export default {
     name: 'ChatDashboard',
     components: {
-      TopBarMetrics,
+      TopBar2,
       QueueHealth
     }
   }
