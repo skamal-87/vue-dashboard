@@ -1,14 +1,20 @@
 const state = {
     userCredentials: [],
-    userKeys: []
+    userKeys: [],
+    authenticated: null,
+    usingKeys: null
 };
 
 const mutations = {
         'LE_AUTH' (state, {username, password, loginApi}) {
         state.userCredentials = [username,password,loginApi]
+        state.usingKeys = false
+        state.authenticated = true
     },
         'KEYS_AUTH' (state, {account,apiKey,secret,accessToken,accessSecret}) {
             state.userKeys = [account,apiKey,secret,accessToken,accessSecret]
+            state.usingKeys = true
+            state.authenticated = true
     }
 };
 
@@ -27,6 +33,9 @@ const getters = {
     },
     userKeys: state => {
         return state.userKeys;
+    },
+    usingKeys: state => {
+        return state.usingKeys;
     }
 
 }
