@@ -1,19 +1,43 @@
 <template>
   <div>
-      <h3>API Settings</h3>
-      <hr>
-      <div class="form-group">
-          <label for="timeFrame">Time Fame (enter a value from 1 to 1440):</label>
-          <input
-            type="number"
-            id="timeFrame"
-            class="form-control"
-            v-model.lazy="apiSettings.timeFrame">
+      <hr class="style18">
+      <div class="col-6 col-md-4">
+        <div class="form-group">
+            <label for="multselect">Select Skills (ctrl+click for multi)</label>
+            <hr class="style9">
+            <select multiple class="form-control" id="multselect">
+                <option v-for="(ea, index) in eaData.skillsMetricsPerAgent.metricsPerSkill" :key="index">{{index}}</option>
+            </select>
+        </div>
       </div>
+      <div class="col-6 col-md-4">
+        <div class="form-group">
+            <label for="timeFrame">Time Fame (enter a value from 1 to 1440):</label>
+            <hr class="style9">
+            <input
+                type="number"
+                id="timeFrame"
+                class="form-control"
+                v-model.lazy="apiSettings.timeFrame">
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="form-group">
+            <label for="multselect">Select Agents (ctrl+click for multi)</label>
+            <hr class="style9">
+            <select multiple class="form-control" id="multselect">
+                <option v-for="(ea, index) in eaData.skillsMetricsPerAgent" :key="index">{{index}}</option>
+            </select>
+        </div>
+      </div>    
+      
+      </div>
+
     </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
   export default {
     data() {
       return {
@@ -28,28 +52,10 @@
         }
       }
     },
-    methods: {
-      submit() {
-        var apiKeys = {
-          // change this to accountData details
-            account: this.accountData.account,
-            apiKey: this.accountData.apiKey,
-            secret: this.accountData.secret,
-            accessToken: this.accountData.accessToken,
-            accessSecret: this.accountData.accessSecret
-        }       
-          this.$store.dispatch('keysAuth', apiKeys)
-          this.$router.push('/')
-          this.submitted = true
-          this.accountData.account = ''
-          this.accountData.apiKey = ''
-          this.accountData.secret = ''
-          this.accountData.accessToken = ''
-          this.accountData.accessSecret = ''
-        // We need to pass the component's this context
-        // to properly make use of http in the auth service
-        
-      }
+    computed: {
+      ...mapGetters({
+          eaData: 'engagementActivityData'
+      })
     }
   }
   </script>
@@ -97,4 +103,33 @@
   .hidden-nav {
     display: none;
   }
+body{
+  background-color: #f0f0f0;
+  width: 700px;
+  float: center;
+}
+
+hr.style9 {
+	border-top: 1px dashed #8c8b8b;
+	border-bottom: 1px dashed #fff;
+}
+
+hr.style18 { 
+  height: 30px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 1px 0 0 0; 
+  border-radius: 20px; 
+} 
+hr.style18:before { 
+  display: block; 
+  content: ""; 
+  height: 30px; 
+  margin-top: -31px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 0 0 1px 0; 
+  border-radius: 20px; 
+}
+
 </style>

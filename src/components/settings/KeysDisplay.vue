@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <div class="col-sm-4 col-sm-offset-4">
       <h1>API Settings</h1>
       <hr>
       <div class="form-group">
@@ -9,7 +9,8 @@
           <input
             type="text"
             id="account"
-            class="form-control"
+            class="form-control input-sm"
+            placeholder="Enter your Account"
             v-model.lazy="accountData.account">
       </div>
       <div class="form-group">
@@ -17,7 +18,8 @@
         <input
           type="text"
           id="apiKey"
-          class="form-control"
+          class="form-control input-sm"
+          placeholder="Enter your API Key"
           v-model.lazy="accountData.apiKey">
       </div>
       <div class="form-group">
@@ -25,7 +27,8 @@
         <input
           type="password"
           id="secret"
-          class="form-control"
+          class="form-control input-sm"
+          placeholder="Enter your Secret"
           v-model.lazy="accountData.secret">
       </div>
       <div class="form-group">
@@ -33,7 +36,8 @@
         <input
           type="text"
           id="accessToken"
-          class="form-control"
+          class="form-control input-sm"
+          placeholder="Enter your Access Token"
           v-model.lazy="accountData.accessToken">
       </div>
       <div class="form-group">
@@ -41,7 +45,8 @@
         <input
           type="password"
           id="accessSecret"
-          class="form-control"
+          class="form-control input-sm"
+          placeholder="Enter your Access Secret"
           v-model.lazy="accountData.accessSecret">
       </div>
     </div>
