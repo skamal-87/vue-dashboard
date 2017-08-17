@@ -15,10 +15,9 @@
   <div class="row">
     <app-switch v-model="usingKeys.usingKeys"></app-switch>
   </div>
+  <br>
   <div class="row">
-      <div class="col-6 col-md-4"><app-global-settings></app-global-settings></div>
-      <div class="col-6 col-md-4"><app-global-settings></app-global-settings></div>
-      <div class="col-6 col-md-4"><app-global-settings></app-global-settings></div>
+    <app-global-settings></app-global-settings>
   </div>
       
 

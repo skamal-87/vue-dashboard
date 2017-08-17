@@ -10,7 +10,7 @@
         <div class="form-group">
           <input
           type="text"
-          class="form-control"
+          class="form-control input-sm"
           placeholder="Enter your username"
           v-model="credentials.username"
           />
@@ -18,7 +18,7 @@
         <div class="form-group">
           <input
             type="password"
-            class="form-control"
+            class="form-control input-sm"
             placeholder="Enter your password"
             v-model="credentials.password"
           />
