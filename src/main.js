@@ -11,9 +11,22 @@ const router = new VueRouter({
   mode: 'history'
 });
 
+  // 
+
+// works in routes but not in here (this is global and what we need)
+router.beforeEach((to, from, next) => {
+  const authed = store.getters.userAuthBody.authenticated
+  if (!authed) {
+    next()
+  } else {
+    next()
+  }
+})
+
 new Vue({
   el: '#app',
   router,
   store,
   render: h => h(App)
 });
+

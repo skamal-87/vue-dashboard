@@ -1,9 +1,9 @@
 <template>
   <div>
       <label for="loginApi"><h2>Log In</h2></label>
-      <app-switch v-model="loginApi"></app-switch>
+      <app-switch v-model="usingKeys"></app-switch>
       <transition name ="slide" mode="out-in">
-        <div v-show="loginApi">
+        <div v-show="!usingKeys">
           <app-login-display></app-login-display>
           <div class="alert alert-danger" v-if="error">
             <p>{{ error }}</p>
@@ -12,7 +12,7 @@
 
         </transition>
         <transition name ="slide">
-          <div v-show="!loginApi">
+          <div v-show="usingKeys">
             <app-keys-display></app-keys-display>
           </div>
         </transition>
@@ -20,10 +20,9 @@
 </template>
 
   <script>
-  import Switch from '../other/Switch.vue'
-  import auth from '../auth'
-  import LoginDisplay from './settings/LoginDisplay.vue'
-  import KeysDisplay from './settings/KeysDisplay.vue'
+  import Switch from '../../other/Switch.vue'
+  import LoginDisplay from '../settings/LoginDisplay.vue'
+  import KeysDisplay from '../settings/KeysDisplay.vue'
   export default {
     data() {
       return {
@@ -34,19 +33,7 @@
           password: ''
         },
         error: '',
-        loginApi: true
-      }
-    },
-    methods: {
-      submit() {
-        var credentials = {
-          username: this.credentials.username,
-          password: this.credentials.password,
-          loginApi: this.loginApi
-        }
-          this.$store.dispatch('leAuth', credentials)
-          this.username = ''
-          this.password = ''
+        usingKeys: true
       }
     },
     components: {

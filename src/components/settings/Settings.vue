@@ -1,12 +1,28 @@
 <template>
-  <div>
-        <p>The Settings Component</p>
-        <div v-show="usingKeys.usingKeys"> 
-            <app-keys-display></app-keys-display>
-        </div>
-        <div v-show="!usingKeys.usingKeys"> 
-            <app-login-display></app-login-display>
-        </div> 
+<div class="container">
+  <div class="row">
+    <div>
+      <div v-show="usingKeys.usingKeys"> 
+        <app-keys-display></app-keys-display>
+      </div>
+      <div v-show="!usingKeys.usingKeys"> 
+        <app-login-display></app-login-display>
+      </div>
+    </div>
+    <div class="col-6 col-md-4"></div>
+  </div>
+  <br>
+  <div class="row">
+    <app-switch v-model="usingKeys.usingKeys"></app-switch>
+  </div>
+  <div class="row">
+      <div class="col-6 col-md-4"><app-global-settings></app-global-settings></div>
+      <div class="col-6 col-md-4"><app-global-settings></app-global-settings></div>
+      <div class="col-6 col-md-4"><app-global-settings></app-global-settings></div>
+  </div>
+      
+
+  </div>
 </div>
 </template>
 
@@ -14,6 +30,8 @@
 import { mapGetters } from 'vuex'
 import KeysDisplay from './KeysDisplay.vue'
 import LoginDisplay from './LoginDisplay.vue'
+import GlobalSettings from './GlobalSettings.vue'
+import Switch from '../../other/Switch.vue'
   export default {
     computed: {
         ...mapGetters({
@@ -27,7 +45,9 @@ import LoginDisplay from './LoginDisplay.vue'
     },
     components: {
         appKeysDisplay: KeysDisplay,
-        appLoginDisplay: LoginDisplay
+        appLoginDisplay: LoginDisplay,
+        appGlobalSettings: GlobalSettings,
+        appSwitch: Switch
     },
     methods: {
       submit() {
