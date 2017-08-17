@@ -23,13 +23,13 @@
             v-model="credentials.password"
           />
         </div>
-        <button class="btn btn-primary" :class="{'submitted': submitted}" @click="submit()">{{submitted ? submitText : buttonText}}</button>
-
+        <button class="btn btn-primary" v-if="matched" @click="submit()">{{submitted ? submitText : buttonText}}</button>
     </div>
 </div>
 </template>
 
 <script>
+
   export default {
     mounted() {
   	//you don't have to use props like I did with this.model, you could read from a vuex getter
@@ -50,6 +50,11 @@
         loginApi: true
       }
     },
+    computed: {
+  	matched: function() {
+    	return this.$route.path.indexOf('/login') == 0;
+      }
+    },
     methods: {
       submit() {
         var credentials = {
@@ -58,9 +63,10 @@
           loginApi: this.loginApi
         }
           this.$store.dispatch('leAuth', credentials)
-            this.credentials.username = ''
-            this.credentials.password = ''
-            this.submitted = true
+          this.$router.push('/')
+          this.credentials.username = ''
+          this.credentials.password = ''
+          this.submitted = true
       }
     }
 

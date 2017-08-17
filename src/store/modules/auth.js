@@ -2,7 +2,7 @@ const state = {
     authBody: {
         userCredentials: {},
         userKeys: {},
-        authenticated: null,
+        authenticated: false,
         usingKeys: null
     }
 };

@@ -1,63 +1,20 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-      <h1>API Settings</h1>
+      <h3>API Settings</h3>
       <hr>
       <div class="form-group">
-          <label for="account">Account Number</label>
+          <label for="timeFrame">Time Fame (enter a value from 1 to 1440):</label>
           <input
-            type="text"
-            id="account"
+            type="number"
+            id="timeFrame"
             class="form-control"
-            v-model.lazy="accountData.account">
-      </div>
-      <div class="form-group">
-        <label for="apiKey">API Key</label>
-        <input
-          type="text"
-          id="apiKey"
-          class="form-control"
-          v-model.lazy="accountData.apiKey">
-      </div>
-      <div class="form-group">
-        <label for="secret">Secret</label>
-        <input
-          type="password"
-          id="secret"
-          class="form-control"
-          v-model.lazy="accountData.secret">
-      </div>
-      <div class="form-group">
-        <label for="accessToken">Access Token</label>
-        <input
-          type="text"
-          id="accessToken"
-          class="form-control"
-          v-model.lazy="accountData.accessToken">
-      </div>
-      <div class="form-group">
-        <label for="accessSecret">Access Secret</label>
-        <input
-          type="password"
-          id="accessSecret"
-          class="form-control"
-          v-model.lazy="accountData.accessSecret">
+            v-model.lazy="apiSettings.timeFrame">
       </div>
     </div>
-  </div>
-      <button class="btn btn-primary" v-if="matched" @click="submit()">{{submitted ? submitText : buttonText}}</button>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
   export default {
-    mounted() {
-  	//you don't have to use props like I did with this.model, you could read from a vuex getter
-    this.accountData  = JSON.parse(JSON.stringify(this.$store.getters.userAuthBody.userKeys))
-  },
     data() {
       return {
         // We need to initialize the component with any
@@ -66,12 +23,8 @@
         submitted: false,
         submitText: 'Submitted!',
         buttonText: 'Submit',
-        accountData: {
-            account: '',
-            apiKey: '',
-            secret: '',
-            accessToken: '',
-            accessSecret: ''
+        apiSettings: {
+            timeFrame: 1
         }
       }
     },
@@ -96,11 +49,6 @@
         // We need to pass the component's this context
         // to properly make use of http in the auth service
         
-      }
-    },
-    computed: {
-  	  matched: function() {
-    	  return this.$route.path.indexOf('/login') == 0;
       }
     }
   }

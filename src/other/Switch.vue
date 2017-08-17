@@ -3,11 +3,11 @@
         <div
                 id="on"
                 @click="switched(true)"
-                :class="{active: value}">LiveEngage</div>
+                :class="{active: value}">API Keys</div>
         <div
                 id="off"
                 @click="switched(false)"
-                :class="{active: !value}">API Keys</div>
+                :class="{active: !value}">LiveEngage</div>
     </div>
 </template>
 
