@@ -18,7 +18,7 @@ const main = {
       token: config.token,
       token_secret: config.token_secret
     };
-    let url = 'https://' + config.realtime_base_domain + '/operations/api/account/' + config.account_id + '/queuestatesla?timeframe=1440&v=1&skillIds=all';
+    let url = 'https://' + config.realtime_base_domain + '/operations/api/account/' + config.account_id + '/msgcsatdistribution?timeframe=1440&v=1&skillIds=all&agentIds=all';
     request.get({
       url: url,
       oauth: oauth,
@@ -26,8 +26,14 @@ const main = {
       headers: {
         'Content-Type': 'application/json'
       }
-    }, (e, r, b) => {
-      utils.sendSuccessResponse(b, res);
+    }, (error, response, body) => {
+      if (error) {
+        utils.sendErrorResponse(error, res);
+      } else if (response.statusCode != 200) {
+        utils.sendErrorResponse(body, res);
+      } else {
+        utils.sendSuccessResponse(body, res);
+      }
     });
   }
 };
