@@ -15,7 +15,6 @@ const mutations = {
 const actions = {
   fetchMessageCsatDistribution: ({ commit }) => {
     commit('FETCH_MSG_CSAT_DISTRIBUTION', msgCsatDistribution);
-    console.log(msgCsatDistribution);
   }
 };
 
