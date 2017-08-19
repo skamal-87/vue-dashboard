@@ -21,3 +21,7 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 ## Resources
 
 Look into using vue datatables here: https://github.com/pstephan1187/vue-datatable
+
+## To Do
+- [ ] Update graphs on messaging dashboard to use messaging data (temp data used right now)
+- [ ] Update graphs to be their own component
