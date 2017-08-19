@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-2 col-sm-4 col-xs-6">
+  <div class="col-md-2 col-sm-4 col-center">
     <div class="card-non-interactive">
       <div class="card-content">
         <p class="card-title" v-html="metricName"></p>
@@ -29,5 +29,16 @@
   .card-metric {
     color: #00d1b2;
     font-size: 1.6rem;
+  }
+
+  .col-center {
+    display: inline-block;
+    float: none;
+  }
+
+  @media only screen and (max-width: 500px) {
+    .col-center {
+      display: block;
+    }
   }
 </style>

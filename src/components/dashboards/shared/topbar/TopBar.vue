@@ -1,32 +1,29 @@
 <template>
   <section>
+
     <!-- Top Bar Metrics -->
-    <div class="row">
-      <div class="col-md-2 col-sm-4 col-xs-6">
-        <div class="card-non-interactive">
-          <div class="card-content">
-            <p class="card-title">{{metricName}}
-            <p class="card-metric">{{agentMetrics}}</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 col-sm-4 col-xs-6">
-        <div class="card-non-interactive">
-          <div class="card-content">
-            <p class="card-title">{{metricName}}
-            <p class="card-metric">{{agentMetrics}}</p>
-          </div>
-        </div>
-      </div>
+    <div class="row row-center">
+      <MetricTile v-for="metric in topBar" :metricName="metric.name" :metricValue="metric.value"></MetricTile>
     </div>
+
+    <!-- Bottom Bar Metrics -->
+    <div class="row row-center">
+      <MetricTile v-for="metric in bottomBar" :metricName="metric.name" :metricValue="metric.value"></MetricTile>
+    </div>
+
   </section>
 </template>
 
 <script>
-  export default {
-        props: ['agentMetrics','metricName']
-  }
+  import MetricTile from './MetricTile.vue'
 
+  export default {
+    name: 'TopBar',
+    components: {
+      MetricTile
+    },
+    props: ['topBar', 'bottomBar']
+  }
 </script>
 
 <style scoped>
@@ -43,5 +40,9 @@
   .card-metric {
     color: #00d1b2;
     font-size: 1.6rem;
+  }
+
+  .row-center {
+    text-align:center;
   }
 </style>
