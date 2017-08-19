@@ -23,7 +23,7 @@
         navOptions: [
           {
             title: 'Chat',
-            url: '/',
+            url: '/ChatDashboard',
             icon: 'glyphicon-comment',
             subMenu: false,
             subMenuParent: false

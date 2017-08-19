@@ -26,5 +26,6 @@ export const routes = [
   { path: '/login', component: Login, name: 'login'},
   { path: '/MessagingDashboard', component: MessagingDashboard},
   { path: '/settings', component: Settings},
+  { path: '/ChatDashboard', component: ChatDashboard},
   { path: '/redirect-me', redirect:'/login'}
 ];
