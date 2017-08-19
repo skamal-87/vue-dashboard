@@ -1,26 +1,18 @@
 <template>
   <section>
-    <TopBar2 class="tob-bar-metrics" :topBar="messagingLoadMetrics" :bottomBar="messagingConversationMetrics"></TopBar2>
-    <TopBar2 class="tob-bar-metrics" :topBar="messagingAgentMetrics" :bottomBar="messagingCsatMetrics"></TopBar2>
-    <!-- bar
-      CSAT
-      Total Answers
-      Positive Answers
-    -->
-
-    <!-- conversations resolved by graph -->
-    <!-- csat dist graph -->
+    <TopBar class="tob-bar-metrics" :topBar="messagingLoadMetrics" :bottomBar="messagingConversationMetrics"></TopBar>
+    <TopBar class="tob-bar-metrics" :topBar="messagingAgentMetrics" :bottomBar="messagingCsatMetrics"></TopBar>
   </section>
 </template>
 
 <script>
-  import TopBar2 from '../shared/topbar/TopBar2.vue';
+  import TopBar from '../shared/topbar/TopBar.vue';
   import Utils from '../../../utils';
 
   export default {
     name: 'MessagingDashboard',
     components: {
-      TopBar2
+      TopBar
     },
     created() {
       this.$store.dispatch('fetchMessageSummary');
