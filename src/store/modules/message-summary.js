@@ -15,7 +15,6 @@ const mutations = {
 const actions = {
   fetchMessageSummary: ({ commit }) => {
     commit('FETCH_MSG_SUMMARY', msgSummary);
-    console.log(msgSummary);
   }
 };
 

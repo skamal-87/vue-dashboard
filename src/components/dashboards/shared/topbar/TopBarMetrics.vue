@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TopBar from './TopBar.vue'
+import TopBar from './TopBarOld.vue'
   export default {
     name: 'TopBarMetrics',
     components: {
