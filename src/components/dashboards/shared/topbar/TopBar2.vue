@@ -2,12 +2,12 @@
   <section>
 
     <!-- Top Bar Metrics -->
-    <div class="row">
+    <div class="row row-center">
       <MetricTile v-for="metric in topBar" :metricName="metric.name" :metricValue="metric.value"></MetricTile>
     </div>
 
     <!-- Bottom Bar Metrics -->
-    <div class="row">
+    <div class="row row-center">
       <MetricTile v-for="metric in bottomBar" :metricName="metric.name" :metricValue="metric.value"></MetricTile>
     </div>
 
@@ -40,5 +40,9 @@
   .card-metric {
     color: #00d1b2;
     font-size: 1.6rem;
+  }
+
+  .row-center {
+    text-align:center;
   }
 </style>
