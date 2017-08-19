@@ -99,4 +99,8 @@
     padding-top: 20px;
     margin: 20px 25px;
   }
+
+  .tob-bar-metrics {
+    margin-top: 20px;
+  }
 </style>

@@ -86,9 +86,3 @@
     }
   }
 </script>
-
-<style scoped>
-  .tob-bar-metrics {
-    margin-top: 20px;
-  }
-</style>
