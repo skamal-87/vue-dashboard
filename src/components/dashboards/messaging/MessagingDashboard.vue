@@ -1,14 +1,7 @@
 <template>
   <section>
     <TopBar2 class="tob-bar-metrics" :topBar="messagingLoadMetrics" :bottomBar="messagingConversationMetrics"></TopBar2>
-
-    <!-- bar
-      Conversations Resolved
-      Resolved By CCP
-      Resolved By Consumer
-      Average Handling Time
-    -->
-
+    <TopBar2 class="tob-bar-metrics" :topBar="messagingAgentMetrics" :bottomBar="messagingCsatMetrics"></TopBar2>
     <!-- bar
       CSAT
       Total Answers
@@ -103,6 +96,25 @@
           "numAwayAgents": {
             "name": "Away <br>Agents",
             "value": data.summaryResults.numAwayAgents
+          }
+        };
+        return dataBar;
+      },
+      messagingCsatMetrics() {
+        let data = this.$store.getters.messageCsatDistribution;
+        let metricsTotals = data.agentsMetrics.metricsTotals;
+        let dataBar = {
+          "csat_score": {
+            "name": "CSAT <br>  &nbsp;",
+            "value": (metricsTotals.csat_score* 100).toFixed(0) + "%"
+          },
+          "total_answers": {
+            "name": "Total <br>Answers",
+            "value": metricsTotals.total_answers
+          },
+          "positive_answers": {
+            "name": "Positive <br>Answers",
+            "value": metricsTotals.positive_answers
           }
         };
         return dataBar;
