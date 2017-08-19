@@ -11,6 +11,8 @@ import currentQueue from '../data/currentQueue';
 import SLA from '../data/SLA';
 import auth from './modules/auth';
 import messageSummary from './modules/message-summary';
+import messageConversation from './modules/message-conversation';
+import messageCsatDistribution from './modules/message-csat-distribution';
 import msgStatus from '../data/msg-status';
 
 Vue.use(Vuex);
@@ -108,6 +110,8 @@ export default new Vuex.Store({
   actions,
   modules: {
     auth,
-    messageSummary
+    messageSummary,
+    messageConversation,
+    messageCsatDistribution
   }
 });

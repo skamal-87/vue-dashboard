@@ -1,6 +1,6 @@
 <template>
   <section>
-    <TopBar2 class="tob-bar-metrics" :topBar="messageSummaryTopMetrics" :bottomBar="messageSummaryBottomMetrics"></TopBar2>
+    <TopBar2 class="tob-bar-metrics" :topBar="messagingLoadMetrics" :bottomBar="messagingConversationMetrics"></TopBar2>
 
     <!-- bar
       Conversations Resolved
@@ -22,6 +22,7 @@
 
 <script>
   import TopBar2 from '../shared/topbar/TopBar2.vue';
+  import Utils from '../../../utils';
 
   export default {
     name: 'MessagingDashboard',
@@ -30,11 +31,13 @@
     },
     created() {
       this.$store.dispatch('fetchMessageSummary');
+      this.$store.dispatch('fetchMessageConversation');
+      this.$store.dispatch('fetchMessageCsatDistribution');
     },
     computed: {
-      messageSummaryTopMetrics() {
+      messagingLoadMetrics() {
         let data = this.$store.getters.messageSummary;
-        let topBar = {
+        let dataBar = {
           "minLoad": {
             "name": "Min <br>Load",
             "value": data.summaryResults.minLoad
@@ -56,15 +59,39 @@
             "value": data.summaryResults.maxConfiguredMaxSlots
           }
         };
-        return topBar;
+        return dataBar;
       },
-      messageSummaryBottomMetrics() {
+      messagingConversationMetrics() {
         let data = this.$store.getters.messageSummary;
-        let bottomBar = {
+        let conversationData = this.$store.getters.messageConversation;
+        let avgTime_resolvedConversations = Utils.secondsToHms(conversationData.agentsMetrics.metricsTotals.avgTime_resolvedConversations/1000);
+        let dataBar = {
           "openAssignedConversations": {
             "name": "Open Assigned<br>Conversations",
             "value": data.summaryResults.openAssignedConversations
           },
+          "totalResolvedConversations": {
+            "name": "Conversations <br>Resolved",
+            "value": conversationData.agentsMetrics.metricsTotals.totalResolvedConversations
+          },
+          "resolvedConversations_byCCP": {
+            "name": "Resolved <br>By CCP",
+            "value": conversationData.agentsMetrics.metricsTotals.resolvedConversations_byCCP
+          },
+          "resolvedConversations_byConsumer": {
+            "name": "Resolved <br>By Consumer",
+            "value": conversationData.agentsMetrics.metricsTotals.resolvedConversations_byConsumer
+          },
+          "avgTime_resolvedConversations": {
+            "name": "Avg. <br>Handling Time",
+            "value": avgTime_resolvedConversations
+          }
+        };
+        return dataBar;
+      },
+      messagingAgentMetrics() {
+        let data = this.$store.getters.messageSummary;
+        let dataBar = {
           "numOnlineAgents": {
             "name": "Online <br>Agents",
             "value": data.summaryResults.numOnlineAgents
@@ -78,7 +105,7 @@
             "value": data.summaryResults.numAwayAgents
           }
         };
-        return bottomBar;
+        return dataBar;
       }
     }
   }
