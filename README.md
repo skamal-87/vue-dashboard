@@ -25,3 +25,4 @@ Look into using vue datatables here: https://github.com/pstephan1187/vue-datatab
 ## To Do
 - [ ] Update graphs on messaging dashboard to use messaging data (temp data used right now)
 - [ ] Update graphs to be their own component
+- [ ] Update data to pull in real time
