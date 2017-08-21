@@ -4,15 +4,20 @@
         <h1>LiveEngage Authentication </h1>
         <hr>
         <p>Input your LiveEngage credentials to access your dashboard!</p>
-        <div class="alert alert-danger" v-if="error">
-          <p>{{ error }}</p>
+        <div class="form-group">
+          <input
+          type="text"
+          class="form-control input-sm"
+          placeholder="Enter your Account Number"
+          v-model="credentials.accountNumber"
+          />
         </div>
         <div class="form-group">
           <input
           type="text"
           class="form-control input-sm"
           placeholder="Enter your username"
-          v-model="credentials.username"
+          v-model="credentials.userName"
           />
         </div>
         <div class="form-group">
@@ -23,13 +28,18 @@
             v-model="credentials.password"
           />
         </div>
-        <button class="btn btn-primary" v-if="matched" @click="submit()">{{submitted ? submitText : buttonText}}</button>
+        <button class="btn btn-primary" v-if="matched" @click="postPost()">Submit!</button>
+        <br>
+        <br>
+        <div class="alert alert-danger" v-if="error">
+          <strong>Login Error!</strong> {{errorMessage.response.data.error.error}}
+        </div>
     </div>
 </div>
 </template>
 
 <script>
-
+import axios from 'axios'
   export default {
     mounted() {
   	//you don't have to use props like I did with this.model, you could read from a vuex getter
@@ -43,10 +53,13 @@
         submitText: 'Submitted!',
         buttonText: 'Submit',
         credentials: {
-          username: '',
-          password: ''
+          userName: '',
+          password: '',
+          accountNumber: '',
+          bearer: ''
         },
-        error: '',
+        error: false,
+        errorMessage: '',
         loginApi: true
       }
     },
@@ -57,20 +70,36 @@
     },
     methods: {
       submit() {
-        var credentials = {
-          username: this.credentials.username,
-          password: this.credentials.password,
-          loginApi: this.loginApi
-        }
+
+      },
+      postPost() {
+        console.log(this.credentials)
+        axios.post(`http://localhost:3000/api/v1/getBearerToken`, 
+        this.credentials,
+          {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          this.credentials.bearer = response.data.data
+          var credentials = {
+            userName: this.credentials.userName,
+            password: this.credentials.password,
+            loginApi: this.loginApi,
+            accountNumber: this.credentials.accountNumber,
+            bearer: this.credentials.bearer
+          }
           this.$store.dispatch('leAuth', credentials)
           this.$router.push('/')
-          this.credentials.username = ''
-          this.credentials.password = ''
-          this.submitted = true
-      }
+        })
+        .catch(e => {
+          this.error = true
+          this.errorMessage = e
+        })
     }
-
   }
+}
 </script>
 <style scoped>
 

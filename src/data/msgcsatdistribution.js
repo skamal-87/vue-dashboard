@@ -3939,11 +3939,11 @@ export default {
             }
         },
         "metricsTotals": {
-            "csat_score1_answers": 0,
-            "csat_score2_answers": 0,
-            "csat_score3_answers": 0,
-            "csat_score4_answers": 0,
-            "csat_score5_answers": 0,
+            "csat_score1_answers": 10,
+            "csat_score2_answers": 3,
+            "csat_score3_answers": 2,
+            "csat_score4_answers": 15,
+            "csat_score5_answers": 20,
             "total_answers": 0,
             "positive_answers": 0,
             "csat_score": 0
