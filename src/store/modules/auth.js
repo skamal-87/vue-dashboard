@@ -8,8 +8,8 @@ const state = {
 };
 
 const mutations = {
-        'LE_AUTH' (state, {username, password, loginApi}) {
-        state.authBody.userCredentials = {username,password,loginApi}
+        'LE_AUTH' (state, {userName, password, loginApi,accountNumber,bearer}) {
+        state.authBody.userCredentials = {userName,password,loginApi,accountNumber,bearer}
         state.authBody.usingKeys = false
         state.authBody.authenticated = true
     },

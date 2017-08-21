@@ -44,6 +44,6 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-app.listen(config.port, function () {
-  console.log('Example app listening on port ', config.port);
+app.listen(3000, function () {
+  console.log('Example app listening on port ', 3000);
 });
