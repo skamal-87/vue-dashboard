@@ -13,7 +13,7 @@ import auth from './modules/auth';
 import messageSummary from './modules/message-summary';
 import messageConversation from './modules/message-conversation';
 import messageCsatDistribution from './modules/message-csat-distribution';
-import msgStatus from '../data/msg-status';
+import messageStatus from './modules/message-conversation';
 
 Vue.use(Vuex);
 
@@ -112,6 +112,7 @@ export default new Vuex.Store({
     auth,
     messageSummary,
     messageConversation,
-    messageCsatDistribution
+    messageCsatDistribution,
+    messageStatus
   }
 });
