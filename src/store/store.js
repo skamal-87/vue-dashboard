@@ -13,7 +13,7 @@ import auth from './modules/auth';
 import messageSummary from './modules/message-summary';
 import messageConversation from './modules/message-conversation';
 import messageCsatDistribution from './modules/message-csat-distribution';
-import messageStatus from './modules/message-conversation';
+import messageStatus from './modules/message-status';
 
 Vue.use(Vuex);
 
