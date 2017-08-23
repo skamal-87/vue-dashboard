@@ -23,12 +23,14 @@
   import TopBar from '../shared/topbar/TopBar.vue';
   import Utils from '../../../utils';
   import GraphComp from './graphs/GraphComp.vue';
+  import DataTable from '../../dataTable/DataTable.vue';
 
   export default {
     name: 'MessagingDashboard',
     components: {
       TopBar,
-      appGraphComp: GraphComp
+      appGraphComp: GraphComp,
+      DataTable
     },
     data: () => {
       return {
@@ -85,7 +87,9 @@
                 borderWidth: 1
               }]
             }
-          }]
+          }
+        ],
+        columns: [['Agent Name', 'Agent Skills', 'Agent Group', 'Current Status', 'Current Status Duration']]
       }
     },
     created() {
