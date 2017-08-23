@@ -22,21 +22,13 @@
 <script>
   import TopBar from '../shared/topbar/TopBar.vue';
   import Utils from '../../../utils';
-<<<<<<< HEAD
-  import GraphComp from './graphs/GraphComp.vue'
-=======
-  import DataTable from '../../dataTable/DataTable.vue';
->>>>>>> 770f235406238817d764198ef99f4e97d4e09e94
+  import GraphComp from './graphs/GraphComp.vue';
 
   export default {
     name: 'MessagingDashboard',
     components: {
       TopBar,
-<<<<<<< HEAD
       appGraphComp: GraphComp
-=======
-      DataTable
->>>>>>> 770f235406238817d764198ef99f4e97d4e09e94
     },
     data: () => {
       return {
@@ -44,7 +36,6 @@
         csatChart: null,
         conversationsChartData: [12, 19, 3],
         csatChartData: [12, 19, 3, 5, 2],
-<<<<<<< HEAD
         chartData: [
           {
             type: 'bar',
@@ -95,9 +86,6 @@
               }]
             }
           }]
-=======
-        columns: [['Agent Name', 'Agent Skills', 'Agent Group', 'Current Status', 'Current Status Duration']]
->>>>>>> 770f235406238817d764198ef99f4e97d4e09e94
       }
     },
     created() {
