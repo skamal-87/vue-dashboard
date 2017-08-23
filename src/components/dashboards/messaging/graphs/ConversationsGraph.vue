@@ -1,88 +1,19 @@
 <template>
   <section>
-    <TopBar class="tob-bar-metrics" :topBar="messagingLoadMetrics" :bottomBar="messagingConversationMetrics"></TopBar>
-    <TopBar class="tob-bar-metrics" :topBar="messagingAgentMetrics" :bottomBar="messagingCsatMetrics"></TopBar>
-    <div class="row tob-bar-metrics">
-      <div class="col-sm-6">
-        <canvas id="conversationsChart" style="width: 100%;height: 400px;"></canvas>
-      </div>
-      <div class="col-sm-6">
-        <canvas id="csatChart" style="width: 100%;height: 400px;"></canvas>
-      </div>
-      <div class="col-sm-6">
-        <app-graph-comp v-for="chart in chartData" :chartData="chart"></app-graph-comp>
-      </div>
-    </div>
+    <canvas id="conversationsChart" style="width: 100%;height: 400px;"></canvas>
   </section>
 </template>
 
 <script>
-  import TopBar from '../shared/topbar/TopBar.vue';
-  import Utils from '../../../utils';
-  import GraphComp from './graphs/GraphComp.vue'
 
   export default {
-    name: 'MessagingDashboard',
-    components: {
-      TopBar,
-      appGraphComp: GraphComp
-    },
+
     data: () => {
       return {
         conversationsChart: null,
         csatChart: null,
         conversationsChartData: [12, 19, 3],
-        csatChartData: [12, 19, 3, 5, 2],
-        chartData: [
-          {
-            type: 'bar',
-            title: 'conversationsChart',
-            data: {
-              labels: ["CCP", "Consumer", "System"],
-              datasets: [{
-                label: '# of Conversations Resolved',
-                data: [12, 19, 3],
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)'
-                ],
-                borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 1
-              }]
-              }
-          },
-          {
-            type: 'bar',
-            title: 'csatChart',
-            data: {
-              labels: ["Answer 5", "Answer 4", "Answer 3", "Answer 2", "Answer 1"],
-              datasets: [{
-                label: '# of Answers',
-                data: [12, 19, 3, 5, 2],
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)'
-                ],
-                borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)'
-                ],
-                borderWidth: 1
-              }]
-            }
-          }]
+        csatChartData: [12, 19, 3, 5, 2]
       }
     },
     created() {
