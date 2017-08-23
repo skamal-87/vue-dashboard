@@ -1,7 +1,6 @@
 <template>
   <section>
-    <canvas id="csatchart" style="width: 100%;height: 400px;"></canvas>
-    <p>{{chartData.data}}</p>
+    <canvas :id="chartID" style="width: 100%;height: 400px;"></canvas>
   </section>
 </template>
 
@@ -10,18 +9,20 @@
   export default {
       data() {
           return{
-              conversationsChart: null,
+              chart: null,
               csatChart: null
           }
       },
     props:[
-      'chartData'
+      'chartData',
+      'chartID'
     ],
-    computed() {
-      let ctxCSAT = document.getElementById(chartData.title);
-      this.csatChart = new Chart(ctxCSAT, {
-        type: chartData.type,
-        data: chartData.data,
+    mounted() {
+      console.log(this.chartData);
+      let ctx = document.getElementById(this.chartID);
+      this.chart = new Chart(ctx, {
+        type: this.chartData.type,
+        data: this.chartData.data,
         options: {
           scales: {
             yAxes: [{
@@ -34,14 +35,6 @@
           responsive: false
         }
       });
-    },
-    methods: {
-      updateChartData: (chart, data) => {
-        chart.data.datasets.forEach((dataset) => {
-          dataset.data = data;
-        });
-        chart.update();
-      }
     }
   }
 </script>

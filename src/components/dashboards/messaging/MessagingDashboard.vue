@@ -6,15 +6,7 @@
       <DataTable :columns="columns" :data="messagingStatusMetrics"></DataTable>
     </div>
     <div class="row tob-bar-metrics">
-      <div class="col-sm-6">
-        <canvas id="conversationsChart" style="width: 100%;height: 400px;"></canvas>
-      </div>
-      <div class="col-sm-6">
-        <canvas id="csatChart" style="width: 100%;height: 400px;"></canvas>
-      </div>
-      <div class="col-sm-6">
-        <app-graph-comp v-for="chart in chartData" :chartData="chart"></app-graph-comp>
-      </div>
+      <app-graph-comp v-for="chart in chartData" :chartData="chart" :chartID="chart.id" class="col-sm-6"></app-graph-comp>
     </div>
   </section>
 </template>
@@ -40,6 +32,7 @@
         csatChartData: [12, 19, 3, 5, 2],
         chartData: [
           {
+            id: 'conversationsChart2',
             type: 'bar',
             title: 'conversationsChart',
             data: {
@@ -63,6 +56,7 @@
               }
           },
           {
+            id: 'csatChart2',
             type: 'bar',
             title: 'csatChart',
             data: {
@@ -97,79 +91,6 @@
       this.$store.dispatch('fetchMessageConversation');
       this.$store.dispatch('fetchMessageCsatDistribution');
       this.$store.dispatch('fetchMessageStatus');
-    },
-    mounted() {
-      let ctxConversations = document.getElementById("conversationsChart");
-      let ctxCSAT = document.getElementById("csatChart");
-      this.conversationsChart = new Chart(ctxConversations, {
-        type: 'bar',
-        data: {
-          labels: ["CCP", "Consumer", "System"],
-          datasets: [{
-            label: '# of Conversations Resolved',
-            data: this.conversationsChartData,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255,99,132,1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero:true
-              }
-            }]
-          },
-          maintainAspectRatio: false,
-          responsive: false
-        }
-      });
-      this.csatChart = new Chart(ctxCSAT, {
-        type: 'bar',
-        data: {
-          labels: ["Answer 5", "Answer 4", "Answer 3", "Answer 2", "Answer 1"],
-          datasets: [{
-            label: '# of Answers',
-            data: this.csatChartData,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255,99,132,1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero:true
-              }
-            }]
-          },
-          maintainAspectRatio: false,
-          responsive: false
-        }
-      });
     },
     computed: {
       messagingStatusMetrics() {
