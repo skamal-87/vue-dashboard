@@ -2,6 +2,9 @@
   <section>
     <TopBar class="tob-bar-metrics" :topBar="messagingLoadMetrics" :bottomBar="messagingConversationMetrics"></TopBar>
     <TopBar class="tob-bar-metrics" :topBar="messagingAgentMetrics" :bottomBar="messagingCsatMetrics"></TopBar>
+    <div class="row">
+      <DataTable :columns="columns" :data="messagingStatusMetrics"></DataTable>
+    </div>
     <div class="row tob-bar-metrics">
       <div class="col-sm-6">
         <canvas id="conversationsChart" style="width: 100%;height: 400px;"></canvas>
@@ -19,13 +22,21 @@
 <script>
   import TopBar from '../shared/topbar/TopBar.vue';
   import Utils from '../../../utils';
+<<<<<<< HEAD
   import GraphComp from './graphs/GraphComp.vue'
+=======
+  import DataTable from '../../dataTable/DataTable.vue';
+>>>>>>> 770f235406238817d764198ef99f4e97d4e09e94
 
   export default {
     name: 'MessagingDashboard',
     components: {
       TopBar,
+<<<<<<< HEAD
       appGraphComp: GraphComp
+=======
+      DataTable
+>>>>>>> 770f235406238817d764198ef99f4e97d4e09e94
     },
     data: () => {
       return {
@@ -33,6 +44,7 @@
         csatChart: null,
         conversationsChartData: [12, 19, 3],
         csatChartData: [12, 19, 3, 5, 2],
+<<<<<<< HEAD
         chartData: [
           {
             type: 'bar',
@@ -83,12 +95,16 @@
               }]
             }
           }]
+=======
+        columns: [['Agent Name', 'Agent Skills', 'Agent Group', 'Current Status', 'Current Status Duration']]
+>>>>>>> 770f235406238817d764198ef99f4e97d4e09e94
       }
     },
     created() {
       this.$store.dispatch('fetchMessageSummary');
       this.$store.dispatch('fetchMessageConversation');
       this.$store.dispatch('fetchMessageCsatDistribution');
+      this.$store.dispatch('fetchMessageStatus');
     },
     mounted() {
       let ctxConversations = document.getElementById("conversationsChart");
@@ -164,6 +180,21 @@
       });
     },
     computed: {
+      messagingStatusMetrics() {
+        let data = this.$store.getters.messageStatus;
+        let dataArr = [];
+        /* Loop through all agents and add them to the array. */
+        Object.keys(data.agentStatusRecords).forEach(function(currentKey) {
+          let agentName = data.agentStatusRecords[currentKey].agentName;
+          let agentSkills = data.agentStatusRecords[currentKey].agentSkills;
+          let agentGroupName = data.agentStatusRecords[currentKey].agentGroupName;
+          let currentStatus = data.agentStatusRecords[currentKey].currentStatus;
+          let currentStatusDuration = data.agentStatusRecords[currentKey].currentStatusDuration;
+          let agentArr = [agentName, agentSkills, agentGroupName, currentStatus, currentStatusDuration];
+          dataArr.push(agentArr);
+        });
+        return dataArr;
+      },
       messagingLoadMetrics() {
         let data = this.$store.getters.messageSummary;
         let dataBar = {
