@@ -25,9 +25,7 @@
       DataTable
     },
     data: () => {
-      return {
-        conversationsChart: null,
-        csatChart: null,
+      return {,
         conversationsChartData: [12, 19, 3],
         csatChartData: [12, 19, 3, 5, 2],
         chartData: [
