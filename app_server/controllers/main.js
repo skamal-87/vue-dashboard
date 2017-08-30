@@ -12,13 +12,14 @@ const main = {
   },
 
   getQueueHealth: function(req, res) {
+    console.log(req.body);
     let oauth = {
       consumer_key: config.consumer_key,
       consumer_secret: config.consumer_secret,
       token: config.token,
       token_secret: config.token_secret
     };
-    let url = 'https://' + config.realtime_base_domain + '/operations/api/account/' + config.account_id + '/msgcsatdistribution?timeframe=1440&v=1&skillIds=all&agentIds=all';
+    let url = 'https://' + config.realtime_base_domain + '/operations/api/account/' + req.body.accountNumber + '/queuehealth?timeframe=1440&v=1&skillIds=all&agentIds=all';
     request.get({
       url: url,
       oauth: oauth,

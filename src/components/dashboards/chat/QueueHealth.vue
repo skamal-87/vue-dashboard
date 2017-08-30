@@ -29,6 +29,8 @@
     computed: {
       queueHealthMetrics() {
         let data = this.$store.getters.queueHealthData;
+        data = data.data;
+        console.log(data);
         let skillID = "All";
         let avgTimeToAbandon = Utils.secondsToHms(data.metricsTotals.avgTimeToAbandon);
         let totalTimeToAnswer = Utils.secondsToHms(data.metricsTotals.totalTimeToAnswer);
