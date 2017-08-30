@@ -64,6 +64,9 @@
         }
         return dataArr;
       },
+    },
+    created() {
+      this.$store.dispatch('fetchQueueHealth');
     }
   }
 </script>

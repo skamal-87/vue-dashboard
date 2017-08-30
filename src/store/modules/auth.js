@@ -1,6 +1,11 @@
 const state = {
     authBody: {
-        userCredentials: {},
+        userCredentials: {
+            userName: 'swestover@liveperson.com',
+          password: 'LP2017!!!!lpsn16! !',
+          accountNumber: '5477507',
+          bearer: ''
+        },
         userKeys: {},
         authenticated: false,
         usingKeys: null

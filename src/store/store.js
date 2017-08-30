@@ -19,8 +19,7 @@ Vue.use(Vuex);
 
 const state = {
   dataInt: [],
-  queueHealthData: {
-  },
+  queueHealthData: null,
   engagementActivityData: {
   },
   agentActivityData: {
@@ -56,16 +55,25 @@ const actions = {
   initData: ({commit}) => {
     commit('SET_DASH',dataInt);
   },
-  fetchQueueHealth2: ({ commit }) => {
-    axios.get(config.apiURL + '/api/v1/getQueueHealth')
+  fetchQueueHealth: ({ commit }) => {
+    axios.post(config.apiURL + `/api/v1/getQueueHealth`, 
+    auth.state.authBody,
+      {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
       .then(response => {
+        console.log(response);
         commit("FETCH_QUEUE_HEALTH", response.data);
       })
       .catch(error => {
+        console.log(error);
         console.log(error.statusText);
       });
   },
-  fetchQueueHealth: ({ commit }) => {
+  fetchQueueHealth2: ({ commit }) => {
+    console.log(auth.state.authBody);
     commit('FETCH_QUEUE_HEALTH', qh);
   },
   fetchEngagementActivity: ({ commit }) => {
